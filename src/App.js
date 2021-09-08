@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import InitialScreen from "./InitialScreen/InitialScreen";
-import HabitsScreen from "./HabitsScreen/HabitsScreen.js";
-import TopBar from "./Top and Bottom Bars/TopBar";
-import BottomBar from "./Top and Bottom Bars/BottomBar";
-import TodaysHabitsScreen from "./TodaysHabitsScreen/TodaysHabitsScreen";
+import InitialScreen from "./pages/InitialScreen/InitialScreen";
+import HabitsScreen from "./pages/HabitsScreen/HabitsScreen.js";
+import TopBar from "./pages/TopBar/TopBar";
+import BottomBar from "./pages/BottomBar/BottomBar";
+import TodaysHabitsScreen from "./pages/TodaysHabitsScreen/TodaysHabitsScreen";
 import { useState } from "react";
 
 

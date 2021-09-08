@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FixedBar } from "../shared/SharedElements";
+import FixedBar from "../../shared/styles/FixedBar.js"
 
 export default function TopBar({isHidden}) {
     if(isHidden) {

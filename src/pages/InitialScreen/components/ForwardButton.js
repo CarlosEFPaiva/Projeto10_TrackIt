@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-const MainLogo = styled.img`
-    width: 180px;
-    height: 180px;
-    margin-top: 68px;
-    margin-bottom: 32px;
-`
+export default function ForwardButton({ isUserRegistered }) {
+    return (
+        <Button>
+            {isUserRegistered ? "Entrar" : "Cadastrar"}
+        </Button>
+    );
+}
 
 const Button = styled.button`
     width: 100%;
@@ -19,15 +20,3 @@ const Button = styled.button`
     justify-content: center;
     align-items: center;
 `
-
-const UnderButtonMessage = styled.span`
-    font-size: 14px;
-    text-decoration: underline;
-    color: #52B6FF;
-`
-
-export {
-    MainLogo,
-    Button,
-    UnderButtonMessage
-}
