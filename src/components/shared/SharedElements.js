@@ -3,7 +3,10 @@ import styled from "styled-components";
 const Container = styled.section`
     width: 100vw;
     height: 100vh;
-    padding: ${ ({verticalPadding}) => verticalPadding ? verticalPadding : "0px" } ${ ({horizontalPadding}) => horizontalPadding ? horizontalPadding : "0px" };
+    padding-top: ${ ({topPadding}) => topPadding ? topPadding : "0px" };
+    padding-bottom: ${ ({bottomPadding}) => bottomPadding ? bottomPadding : "0px" };
+    padding-left: ${ ({horizontalPadding}) => horizontalPadding ? horizontalPadding : "0px" };
+    padding-right: ${ ({horizontalPadding}) => horizontalPadding ? horizontalPadding : "0px" };
     background-color: ${ ({backgroundColor}) => backgroundColor ? backgroundColor : "#FFFFFF"};
     display: flex;
     flex-direction: column;
@@ -42,6 +45,7 @@ const FixedBar = styled.header`
     bottom: ${ ({position}) => position === "top" ? "" : "0px" };
     background-color: ${ ({position}) => position === "top" ? "#126BA5" : "#FFFFFF" };
     filter: ${ ({position}) => position === "top" ? "drop-shadow(0px 4px 4px 0px rgba(0,0,0,0.15) )" : "none" } ;
+    z-index: 2;
 `
 
 const ScreenTitle = styled.div`

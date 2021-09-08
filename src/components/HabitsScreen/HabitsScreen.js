@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { BsTrash } from "react-icons/bs"
+import { BsTrash } from "react-icons/bs";
 import { Container, ScreenTitle, ScreenDescription, TrackItInput } from "../shared/SharedElements";
 
 export default function HabitsScreen() {
     const weekdaysInitials = ["D" , "S" , "T" , "Q", "Q", "S", "S"]
     return (
-        <Container backgroundColor = "#F2F2F2" horizontalPadding = "18px" verticalPadding = "98px" >
+        <Container backgroundColor = "#F2F2F2" horizontalPadding = "18px" topPadding = "92px" bottomPadding = "120px" >
 
             <ScreenTitle>
                 <span>Meus hábitos</span>
@@ -24,7 +24,7 @@ export default function HabitsScreen() {
             </UserHabit>
 
             <UserHabit>
-                <span>Ler 1 capítulo por dia</span>
+                <p>Ler 1 capítulo por dia</p>
                 <Weekdays>
                     {weekdaysInitials.map( (letter,index) => <button key = {index} > {letter} </button> )}
                 </Weekdays>
@@ -52,6 +52,7 @@ const NewHabitButton = styled.button`
     font-size: 28px;
     color: #FFFFFF;
 `
+
 const UserHabit = styled.div`
     width: 100%;
     border-radius: 5px;
@@ -59,15 +60,8 @@ const UserHabit = styled.div`
     padding: 16px;
     background-color: #FFFFFF;
     color: #666666;
+    font-size: 20px;
     position: relative;
-
-    span {
-        font-size: 13px;
-    }
- 
-    span:nth-child(1) {
-        font-size: 20px;
-    }
 `
 
 const Weekdays = styled.div`

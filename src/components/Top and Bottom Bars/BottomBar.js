@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FixedBar, TrackItSpan } from "../shared/SharedElements";
+import { FixedBar } from "../shared/SharedElements";
 
 export default function BottomBar({isHidden}) {
     if(isHidden) {
