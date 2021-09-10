@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-export default function NewHabitButton() {
+export default function NewHabitButton({ setIsCreateNewHabitBoxHidden }) {
+
     return (
-        <Main>
+        <Main onClick = {() => setIsCreateNewHabitBoxHidden(false)}>
             +
         </Main>
     );

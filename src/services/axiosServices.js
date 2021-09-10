@@ -10,7 +10,17 @@ function sendUserLoginData(body) {
     return axios.post(`${URL}/auth/login`, body)
 }
 
+function DownloadUserHabits(userToken) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${userToken}`
+        }
+    }
+    return axios.get(`${URL}/habits`, config)
+}
+
 export {
     sendUserRegistration,
-    sendUserLoginData
+    sendUserLoginData,
+    DownloadUserHabits
 }

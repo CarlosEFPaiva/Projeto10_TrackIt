@@ -22,7 +22,6 @@ function CheckAndSendLoginData({ userLoginData, browsingHistory, setIsDataBeingV
     sendUserLoginData(userLoginData)
         .then( resp => {
             setIsDataBeingValidated(false)
-            console.log(resp)
             setUserProfileData({
                 id: resp.data.id,
                 email: resp.data.email,

@@ -3,9 +3,10 @@ import StandardInput from "../../../shared/components/StandardInput";
 import OptionButtons from "./OptionButtons";
 import WeekdaysButtons from "./WeekdaysButtons.js";
 
-export default function CreateNewHabitBox() {
+export default function CreateNewHabitBox({isHidden, setIsHidden}) {
 
     return (
+        isHidden ? "" :
         <Main>
             <StandardInput placeholder = "nome do hábito" />
             <WeekdaysButtons />
