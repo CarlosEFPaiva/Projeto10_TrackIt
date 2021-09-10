@@ -1,32 +1,37 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import InitialScreen from "./pages/InitialScreen/InitialScreen";
+import RegistrationScreen from "./pages/RegistrationScreen/RegistrationScreen";
+import LoginScreen from "./pages/LoginScreen/LoginScreen.js"
 import HabitsScreen from "./pages/HabitsScreen/HabitsScreen.js";
 import TopBar from "./pages/TopBar/TopBar";
 import BottomBar from "./pages/BottomBar/BottomBar";
 import TodaysHabitsScreen from "./pages/TodaysHabitsScreen/TodaysHabitsScreen";
 import { useState } from "react";
+import UserProfileDataContext from "./contexts/UserProfileDataContext";
 
 
 export default function App() {
+  const [userProfileData, setUserProfileData] = useState("")
   const [areFixedBarsHidden, setAreFixedBarsHidden] = useState(true)
   return (
-    <Router>
-      <TopBar isHidden = {areFixedBarsHidden} />
-      <BottomBar isHidden = {areFixedBarsHidden} />
-      <Switch>
-        <Route path = "/" exact>
-          <InitialScreen isUserRegistered = {true}/>
-        </Route>
-        <Route path = "/cadastro" exact>
-          <InitialScreen isUserRegistered = {false}/>
-        </Route>
-        <Route path = "/habitos" exact>
-          <HabitsScreen />
-        </Route>
-        <Route path = "/hoje" exact>
-          <TodaysHabitsScreen />
-        </Route>
-      </Switch>
-    </Router>
+    <UserProfileDataContext.Provider value = {{ userProfileData, setUserProfileData }}>
+      <Router>
+        <TopBar isHidden = {areFixedBarsHidden} />
+        <BottomBar isHidden = {areFixedBarsHidden} />
+        <Switch>
+          <Route path = "/" exact>
+            <LoginScreen />
+          </Route>
+          <Route path = "/cadastro" exact>
+            <RegistrationScreen />
+          </Route>
+          <Route path = "/habitos" exact>
+            <HabitsScreen />
+          </Route>
+          <Route path = "/hoje" exact>
+            <TodaysHabitsScreen />
+          </Route>
+        </Switch>
+      </Router>
+    </UserProfileDataContext.Provider>
   );
 }

@@ -30,10 +30,10 @@ function displayRegistrationError(error, setIsDataBeingValidated ) {
     }
 }
 
-function validateImageUrl(userLoginData, setIsDataBeingValidated, browsingHistory) {
+function validateImageUrl({ userRegistrationData, setIsDataBeingValidated, browsingHistory }) {
     const UrlCheck = new Image();
     UrlCheck.addEventListener('load',  function() {
-        sendUserRegistration(userLoginData)
+        sendUserRegistration(userRegistrationData)
             .then( () => {
                 registrationSuccessfullyCreated(setIsDataBeingValidated, browsingHistory ) 
             })
@@ -45,20 +45,18 @@ function validateImageUrl(userLoginData, setIsDataBeingValidated, browsingHistor
         alert(`Por favor, insira uma URL válida para foto`);
         setIsDataBeingValidated(false);
     });
-    UrlCheck.src = userLoginData.image;
+    UrlCheck.src = userRegistrationData.image;
 }
 
 
-function checkValidationAndSendRegistrationValues(userLoginData, setIsDataBeingValidated, browsingHistory){
-    if (!isInputValid("email",userLoginData.email)) { return };
-    if (!isInputValid("senha",userLoginData.password)) { return };
-    if (!isInputValid("nome",userLoginData.name)) { return };
+function checkValidationAndSendRegistrationValues({ userRegistrationData, setIsDataBeingValidated, browsingHistory }){
+    if (!isInputValid("email",userRegistrationData.email)) { return };
+    if (!isInputValid("senha",userRegistrationData.password)) { return };
+    if (!isInputValid("nome",userRegistrationData.name)) { return };
     setIsDataBeingValidated(true);
 
-    validateImageUrl(userLoginData, setIsDataBeingValidated, browsingHistory)
+    validateImageUrl({ userRegistrationData, setIsDataBeingValidated, browsingHistory })
 }
 
 
-export {
-    checkValidationAndSendRegistrationValues
-}
+export default checkValidationAndSendRegistrationValues

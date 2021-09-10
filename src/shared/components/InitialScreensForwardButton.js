@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import loadingGif from "../../../assets/img/Loading-bgBlue.gif"
+import loadingGif from "../../assets/img/Loading-bgBlue.gif"
 
-export default function ForwardButton({ isUserRegistered, isDataBeingValidated ,onClick }) {
+export default function ForwardButton({ text, isDataBeingValidated , onClick }) {
     return (
         <Button onClick = {onClick}>
-            {isDataBeingValidated ? <img src = {loadingGif} /> : isUserRegistered ? "Entrar" : "Cadastrar"}
+            {isDataBeingValidated ? <img src = {loadingGif} /> : text}
         </Button>
     );
 }
