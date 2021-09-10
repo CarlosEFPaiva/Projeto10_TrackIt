@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 export default function App() {
-  const [areFixedBarsHidden, setAreFixedBarsHidden] = useState(false)
+  const [areFixedBarsHidden, setAreFixedBarsHidden] = useState(true)
   return (
     <Router>
       <TopBar isHidden = {areFixedBarsHidden} />

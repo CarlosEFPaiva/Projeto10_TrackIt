@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import loadingGif from "../../../assets/img/Loading-bgBlue.gif"
 
-export default function ForwardButton({ isUserRegistered }) {
+export default function ForwardButton({ isUserRegistered, isDataBeingValidated ,onClick }) {
     return (
-        <Button>
-            {isUserRegistered ? "Entrar" : "Cadastrar"}
+        <Button onClick = {onClick}>
+            {isDataBeingValidated ? <img src = {loadingGif} /> : isUserRegistered ? "Entrar" : "Cadastrar"}
         </Button>
     );
 }
@@ -19,4 +20,10 @@ const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    img {
+        height: 45px;
+        width: 45px;
+
+    }
 `
