@@ -1,15 +1,18 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import UserProfileDataContext from "../../contexts/UserProfileDataContext.js";
 import FixedBar from "../../shared/styles/FixedBar.js"
 
 export default function TopBar({isHidden}) {
-    if(isHidden) {
-        return "";
-    }
+    const { userProfileData } = useContext(UserProfileDataContext)
+
+
 
     return (
+        isHidden ? "" :
         <FixedBar position = "top" >
             <TrackItTextLogo> TrackIt </TrackItTextLogo>
-            <UserProfilePicture />
+            <UserProfilePicture src = {userProfileData.image}/>
         </FixedBar>
     );
 }

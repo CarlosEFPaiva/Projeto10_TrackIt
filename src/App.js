@@ -19,16 +19,16 @@ export default function App() {
         <BottomBar isHidden = {areFixedBarsHidden} />
         <Switch>
           <Route path = "/" exact>
-            <LoginScreen />
+            <LoginScreen setAreFixedBarsHidden = { setAreFixedBarsHidden } />
           </Route>
           <Route path = "/cadastro" exact>
-            <RegistrationScreen />
+            <RegistrationScreen setAreFixedBarsHidden = { setAreFixedBarsHidden } />
           </Route>
           <Route path = "/habitos" exact>
-            <HabitsScreen />
+            <HabitsScreen setAreFixedBarsHidden = { setAreFixedBarsHidden } />
           </Route>
           <Route path = "/hoje" exact>
-            <TodaysHabitsScreen />
+            <TodaysHabitsScreen setAreFixedBarsHidden = { setAreFixedBarsHidden } />
           </Route>
         </Switch>
       </Router>

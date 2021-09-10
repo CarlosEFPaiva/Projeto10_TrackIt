@@ -3,7 +3,8 @@ import HabitDueToday from "./components/HabitDueToday";
 import ScreenTitle from "../../shared/components/ScreenTitle";
 import ScreenSubtitle from "./components/ScreenSubtitle";
 
-export default function TodaysHabitsScreen() {
+export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
+    setAreFixedBarsHidden(false)
     const completionPercentage = 67;
     return (
         <Container backgroundColor = "#F2F2F2" horizontalPadding = "18px" topPadding = "92px" bottomPadding = "120px" >

@@ -7,7 +7,8 @@ import MainLogo from "../../shared/components/MainLogo.js";
 import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderlinedMessage.js";
 import StandardInput from "../../shared/components/StandardInput.js";
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({ setAreFixedBarsHidden }) {
+    setAreFixedBarsHidden(true)
     const [userRegistrationData, setUserRegistrationData] = useState({ email:"", password:"", name: "", image: "" })
     const [isDataBeingValidated, setIsDataBeingValidated] = useState(false);
     const inputsData = [

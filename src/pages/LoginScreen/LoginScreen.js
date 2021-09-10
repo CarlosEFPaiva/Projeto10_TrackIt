@@ -8,7 +8,8 @@ import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderl
 import StandardInput from "../../shared/components/StandardInput.js";
 import UserProfileDataContext from "../../contexts/UserProfileDataContext.js";
 
-export default function LoginScreen() {
+export default function LoginScreen({ setAreFixedBarsHidden }) {
+    setAreFixedBarsHidden(true)
     const [userLoginData, setUserLoginData] = useState({ email:"", password:""})
     const [isDataBeingValidated, setIsDataBeingValidated] = useState(false);
     const inputsData = [
