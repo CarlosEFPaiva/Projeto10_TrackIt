@@ -1,6 +1,18 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-const TodaysProgress = styled.div`
+export default function TodaysProgress({ linkTo, title }) {
+    return (
+        <Link to = {linkTo}>
+            <Main>
+                {title}
+            </Main>
+        </Link>
+    );
+}
+
+
+const Main = styled.div`
     width: 91px;
     height: 91px;
     border-radius: 50%;
@@ -14,5 +26,3 @@ const TodaysProgress = styled.div`
     color: #FFFFFF;
     font-size: 18px;
 `
-
-export default TodaysProgress;
