@@ -1,6 +1,21 @@
 import styled from "styled-components";
+import ForwardButton from "../../../shared/components/BlueForwardButton";
 
-const OptionButtons = styled.div`
+export default function OptionButtons({cancelFunction, saveFunction, isDataBeingValidated}) {
+    return (
+        <Main>
+        <button onClick = {cancelFunction}>Cancelar</button>
+        <ForwardButton 
+                onClick = {saveFunction}
+                text = "Salvar"
+                isDataBeingValidated = {isDataBeingValidated}
+                smallerVersion = {true}
+            />
+    </Main>
+    );
+}
+
+const Main = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -12,14 +27,4 @@ const OptionButtons = styled.div`
         margin-right: 24px;
         color: #52B6FF;
     }
-
-    button:nth-child(2) {
-        width: 84px;
-        height: 35px;
-        border-radius: 5px;
-        background-color: #52B6FF;
-        color: #FFFFFF;
-    }
 `
-
-export default OptionButtons;

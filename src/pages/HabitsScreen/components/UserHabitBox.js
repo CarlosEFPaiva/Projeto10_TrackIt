@@ -2,11 +2,11 @@ import styled from "styled-components";
 import WeekdaysButtons from "./WeekdaysButtons.js";
 import TrashButton from "./TrashButton.js";
 
-export default function UserHabitBox({ habitTitle }) {
+export default function UserHabitBox({ habit }) {
     return (
         <Main>
-            <p>{ habitTitle }</p>
-            <WeekdaysButtons />
+            <p>{ habit.name }</p>
+            <WeekdaysButtons habit = {habit} isUnclickable = {true} />
             <TrashButton />
         </Main>
     );
@@ -21,4 +21,9 @@ const Main = styled.div`
     color: #666666;
     font-size: 20px;
     position: relative;
+
+    & p {
+        max-width: 80%;
+        word-wrap: break-word;
+    }
 `

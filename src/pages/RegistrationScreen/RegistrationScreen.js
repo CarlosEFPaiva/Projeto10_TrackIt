@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import checkValidationAndSendRegistrationValues from "./RegistrationFunctions.js";
 import Container from "../../shared/styles/Container.js";
-import ForwardButton from "../../shared/components/InitialScreensForwardButton.js";
+import ForwardButton from "../../shared/components/BlueForwardButton.js";
 import MainLogo from "../../shared/components/MainLogo.js";
 import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderlinedMessage.js";
 import StandardInput from "../../shared/components/StandardInput.js";
@@ -41,6 +41,7 @@ export default function RegistrationScreen({ setAreFixedBarsHidden }) {
             }
             <ForwardButton 
                 text = "Cadastrar"
+                marginBottom = "25px"
                 isDataBeingValidated = {isDataBeingValidated}
                 onClick = { () => 
                     checkValidationAndSendRegistrationValues({ userRegistrationData, setIsDataBeingValidated, browsingHistory }) 

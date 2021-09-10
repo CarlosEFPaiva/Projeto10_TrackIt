@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import CheckAndSendLoginData from "./LoginFunctions"
 import Container from "../../shared/styles/Container.js";
-import ForwardButton from "../../shared/components/InitialScreensForwardButton.js";
+import ForwardButton from "../../shared/components/BlueForwardButton.js";
 import MainLogo from "../../shared/components/MainLogo.js";
 import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderlinedMessage.js";
 import StandardInput from "../../shared/components/StandardInput.js";
@@ -42,6 +42,7 @@ export default function LoginScreen({ setAreFixedBarsHidden }) {
             <ForwardButton 
                 onClick = {() => CheckAndSendLoginData({userLoginData, browsingHistory, setIsDataBeingValidated, setUserProfileData})}
                 text = "Entrar"
+                marginBottom = "25px"
                 isDataBeingValidated = {isDataBeingValidated}
             />
             <UnderButtonMessageLink linkTo = "/cadastro" text = "Não tem uma conta? Cadastre-se!"/>
