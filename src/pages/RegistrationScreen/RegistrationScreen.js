@@ -6,6 +6,7 @@ import ForwardButton from "../../shared/components/InitialScreensForwardButton.j
 import MainLogo from "../../shared/components/MainLogo.js";
 import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderlinedMessage.js";
 import StandardInput from "../../shared/components/StandardInput.js";
+import { adjustStateObjectData } from "../../shared/functions/Functions.js";
 
 export default function RegistrationScreen({ setAreFixedBarsHidden }) {
     setAreFixedBarsHidden(true)
@@ -19,12 +20,6 @@ export default function RegistrationScreen({ setAreFixedBarsHidden }) {
     ];
     const browsingHistory = useHistory()
 
-    function adjustUserRegistrationData(atributeToChange,atributeNewValue) { 
-        const entriesArray = Object.entries(userRegistrationData);
-        entriesArray.forEach( (SingleAtributeArray) => {if(SingleAtributeArray[0] === atributeToChange){SingleAtributeArray[1] = atributeNewValue }}  )
-        setUserRegistrationData(Object.fromEntries(entriesArray))
-    }
-
     return (
         <Container horizontalPadding = {"36px"} >
             <MainLogo />
@@ -35,7 +30,12 @@ export default function RegistrationScreen({ setAreFixedBarsHidden }) {
                     type = {type}
                     disabled = {isDataBeingValidated}
                     value = {value}
-                    onChange = { (e) => adjustUserRegistrationData(atribute, e.target.value) }
+                    onChange = { (e) => adjustStateObjectData({
+                        objectToChange:userRegistrationData,
+                        setObjectToChange:setUserRegistrationData,
+                        atributeToChange:atribute,
+                        atributeNewValue:e.target.value
+                    })}
                     marginBottom = "6px"
                 />)
             }

@@ -7,6 +7,7 @@ import MainLogo from "../../shared/components/MainLogo.js";
 import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderlinedMessage.js";
 import StandardInput from "../../shared/components/StandardInput.js";
 import UserProfileDataContext from "../../contexts/UserProfileDataContext.js";
+import { adjustStateObjectData } from "../../shared/functions/Functions";
 
 export default function LoginScreen({ setAreFixedBarsHidden }) {
     setAreFixedBarsHidden(true)
@@ -19,12 +20,6 @@ export default function LoginScreen({ setAreFixedBarsHidden }) {
     const browsingHistory = useHistory()
     const { setUserProfileData } = useContext(UserProfileDataContext);
 
-    function adjustUserLoginData(atributeToChange,atributeNewValue) { 
-        const entriesArray = Object.entries(userLoginData);
-        entriesArray.forEach( (SingleAtributeArray) => {if(SingleAtributeArray[0] === atributeToChange){SingleAtributeArray[1] = atributeNewValue }}  )
-        setUserLoginData(Object.fromEntries(entriesArray))
-    }
-
     return (
         <Container horizontalPadding = {"36px"} >
             <MainLogo />
@@ -35,7 +30,12 @@ export default function LoginScreen({ setAreFixedBarsHidden }) {
                     type = {type}
                     disabled = {isDataBeingValidated}
                     value = {value}
-                    onChange = { (e) => adjustUserLoginData(atribute, e.target.value) }
+                    onChange = { (e) => adjustStateObjectData({
+                        objectToChange:userLoginData,
+                        setObjectToChange:setUserLoginData,
+                        atributeToChange:atribute,
+                        atributeNewValue:e.target.value
+                    })}
                     marginBottom = "6px"
                 />)
             }

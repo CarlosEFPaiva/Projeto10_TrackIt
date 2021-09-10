@@ -12,7 +12,7 @@ import UserHabitsDataContext from "./contexts/UserHabitsDataContext";
 
 export default function App() {
   const [userProfileData, setUserProfileData] = useState("")
-  const [userHabitsData, setUserHabitsData] = useState("")
+  const [userHabitsData, setUserHabitsData] = useState({everyHabit: [], todaysHabits: []})
   const [areFixedBarsHidden, setAreFixedBarsHidden] = useState(true)
   return (
     <UserProfileDataContext.Provider value = {{ userProfileData, setUserProfileData }}>

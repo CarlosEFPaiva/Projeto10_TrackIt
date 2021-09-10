@@ -3,7 +3,7 @@ import loadingGif from "../../assets/img/Loading-bgBlue.gif"
 
 export default function ForwardButton({ text, isDataBeingValidated , onClick }) {
     return (
-        <Button onClick = {onClick}>
+        <Button onClick = {onClick} isDataBeingValidated = {isDataBeingValidated}>
             {isDataBeingValidated ? <img src = {loadingGif} /> : text}
         </Button>
     );
@@ -20,6 +20,7 @@ const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: ${ ({isDataBeingValidated}) => isDataBeingValidated ? 0.7 : 1};
     
     img {
         height: 45px;

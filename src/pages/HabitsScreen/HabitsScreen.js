@@ -9,18 +9,24 @@ import { DownloadUserHabits } from "../../services/axiosServices.js";
 import UserProfileDataContext from "../../contexts/UserProfileDataContext.js";
 import { useHistory } from "react-router-dom";
 import UserHabitsDataContext from "../../contexts/UserHabitsDataContext.js";
+import { adjustStateObjectData } from "../../shared/functions/Functions.js";
 
 export default function HabitsScreen({ setAreFixedBarsHidden }) {
-    setAreFixedBarsHidden(false)
     const { userProfileData } = useContext(UserProfileDataContext);
     const { userHabitsData, setUserHabitsData } = useContext(UserHabitsDataContext)
     const [isCreateNewHabitBoxHidden, setIsCreateNewHabitBoxHidden ] = useState(true)
     const browsingHistory = useHistory()
 
     useEffect(() => {
+        setAreFixedBarsHidden(false)
         DownloadUserHabits(userProfileData.token)
             .then( resp => {
-                setUserHabitsData(resp.data)
+                adjustStateObjectData({
+                    objectToChange:userHabitsData,
+                    setObjectToChange:setUserHabitsData,
+                    atributeToChange: "everyHabit",
+                    atributeNewValue: resp.data
+                })
             })
             .catch( error => {
                 alert("Parece que houve um erro de contato com o servidor.. :/ Por favor, tente fazer seu login novamente")
@@ -32,10 +38,13 @@ export default function HabitsScreen({ setAreFixedBarsHidden }) {
         <Container backgroundColor = "#F2F2F2" horizontalPadding = "18px" topPadding = "92px" bottomPadding = "120px" >
 
             <ScreenTitle text="Meus Hábitos" />
-            <NewHabitButton setIsCreateNewHabitBoxHidden = {setIsCreateNewHabitBoxHidden}/>
+            <NewHabitButton setIsBoxHidden = {setIsCreateNewHabitBoxHidden}/>
             <CreateNewHabitBox isHidden = { isCreateNewHabitBoxHidden } setIsHidden = {setIsCreateNewHabitBoxHidden} />
-            <UserHabitBox habitTitle = "Ler 1 capítulo de livro" />
-            <ScreenDescription text = {"Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"} />
+            {userHabitsData.everyHabit.map( () => <UserHabitBox habitTitle = "Ler 1 capítulo de livro" /> )}
+            <ScreenDescription
+                numberOfData = {userHabitsData.everyHabit.length}
+                text = {"Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"}
+            />
 
         </Container>
     );

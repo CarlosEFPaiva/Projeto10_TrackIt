@@ -11,7 +11,7 @@ export default function CreateNewHabitBox({isHidden, setIsHidden}) {
             <StandardInput placeholder = "nome do hábito" />
             <WeekdaysButtons />
             <OptionButtons>
-                <button>Cancelar</button>
+                <button onClick = {() => setIsHidden(true)}>Cancelar</button>
                 <button>Salvar</button>
             </OptionButtons>
         </Main>
