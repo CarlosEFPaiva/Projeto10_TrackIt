@@ -35,11 +35,16 @@ function DownloadHabitsDueToday(userToken) {
     return axios.get(`${URL}/habits/today`, createConfig(userToken))
 }
 
+function SendHabitSelectionState( habitId, selectionState ,userToken ) {
+    return axios.post(`${URL}/habits/${habitId}/${selectionState}`, {} ,createConfig(userToken))
+}
+
 export {
     sendUserRegistration,
     sendUserLoginData,
     DownloadUserHabits,
     CreateNewHabit,
     SendDeleteRequest,
-    DownloadHabitsDueToday
+    DownloadHabitsDueToday,
+    SendHabitSelectionState
 }

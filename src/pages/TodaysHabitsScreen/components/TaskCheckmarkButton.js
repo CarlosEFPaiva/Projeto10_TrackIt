@@ -1,10 +1,46 @@
 import styled from "styled-components";
 import { IoMdCheckmark } from "react-icons/io";
+import { useContext, useState } from "react";
+import UserProfileDataContext from "../../../contexts/App/UserProfileDataContext";
+import HabitRequestContext from "../../../contexts/HabitsScreen/HabitRequestContext";
+import { SendHabitSelectionState } from "../../../services/axiosServices";
+import greenLoadingGif from "../../../assets/img/GreenLoading.gif";
+import lightGreenLoadingGif from "../../../assets/img/LightGreenLoading.gif"
 
-export default function TaskCheckmarkButton({ isHabitComplete }) {
+export default function TaskCheckmarkButton({ habitId, isHabitComplete }) {
+    const { userProfileData } = useContext(UserProfileDataContext);
+    const { isHabitRequestBeingValidated, setIsHabitRequestBeingValidated } = useContext(HabitRequestContext);
+    const [ isThisHabitBeingUpdated, setIsThisHabitBeingUpdated ] = useState(false)
+    const loadingGif = isHabitComplete ? lightGreenLoadingGif : greenLoadingGif;
+
+    function processHabitClick(selectionState) {
+        SendHabitSelectionState(habitId, selectionState ,userProfileData.token)
+        .then( () => {
+            setIsHabitRequestBeingValidated(false);
+            setIsThisHabitBeingUpdated(false);
+        })
+        .catch( () => {
+            alert("Oh não, parece que houve um erro! :/ Tente novamente mais tarde...")
+            setIsHabitRequestBeingValidated(false);
+            setIsThisHabitBeingUpdated(false);
+        })
+    }
+
+    function selectOrDeselectHabit() {
+        if (!isHabitRequestBeingValidated) {
+            setIsHabitRequestBeingValidated(true);
+            setIsThisHabitBeingUpdated(true);
+            if (isHabitComplete) {
+                processHabitClick("uncheck");
+            } else {
+                processHabitClick("check");
+            }
+        }
+    }
+
     return (
-        <Main isHabitComplete = {isHabitComplete} >
-            <IoMdCheckmark />
+        <Main isHabitComplete = {isHabitComplete} onClick = { selectOrDeselectHabit } >
+            {isThisHabitBeingUpdated ? <img src = { loadingGif } /> : <IoMdCheckmark />}
         </Main>
     );
 }
@@ -23,4 +59,9 @@ const Main = styled.button`
     position: absolute;
     right: 13px;
     top: calc((100% - 69px) / 2);
+
+    & img {
+        width: 65px;
+        height: 65px;
+    }
 `

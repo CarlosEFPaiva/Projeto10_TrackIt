@@ -11,7 +11,7 @@ export default function HabitDueToday({habit:{ name, id, done, highestSequence, 
                 highestSequence = { highestSequence }
                 currentSequence = { currentSequence } 
             />
-            <TaskCheckmarkButton isHabitComplete = { done } /> 
+            <TaskCheckmarkButton habitId = { id } isHabitComplete = { done } /> 
         </Main>
     );
 }

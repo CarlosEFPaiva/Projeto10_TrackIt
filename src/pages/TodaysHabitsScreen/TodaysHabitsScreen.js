@@ -25,7 +25,6 @@ export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
         setAreFixedBarsHidden(false);
         DownloadHabitsDueToday(userProfileData.token)
             .then( resp => {
-                console.log(resp.data)
                 adjustStateObjectData({
                     objectToChange: userHabitsData,
                     setObjectToChange: setUserHabitsData,
