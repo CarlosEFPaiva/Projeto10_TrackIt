@@ -4,12 +4,12 @@ import ScreenTitle from "../../shared/components/ScreenTitle";
 import ScreenSubtitle from "./components/ScreenSubtitle";
 import ScreenDescription from "../../shared/components/ScreenDescription";
 import dayjs from "dayjs"
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserProfileDataContext from "../../contexts/App/UserProfileDataContext";
 import UserHabitsDataContext from "../../contexts/App/UserHabitsDataContext";
 import Loading from "../../shared/components/Loading";
 import { DownloadHabitsDueToday } from "../../services/axiosServices.js";
-import { adjustStateObjectData } from "../../shared/functions/Functions";
+import { adjustStateObjectData, TodaysHabitsCompletionPercentage} from "../../shared/functions/Functions";
 import { useHistory } from "react-router";
 import HabitRequestContext from "../../contexts/HabitsScreen/HabitRequestContext";
 
@@ -18,7 +18,6 @@ export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
     const { userProfileData } = useContext(UserProfileDataContext);
     const { userHabitsData, setUserHabitsData } = useContext(UserHabitsDataContext);
     const { isHabitRequestBeingValidated } = useContext(HabitRequestContext);
-    const completionPercentage = 67;
     const browsingHistory = useHistory();
 
     useEffect( () => {
@@ -28,9 +27,9 @@ export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
                 adjustStateObjectData({
                     objectToChange: userHabitsData,
                     setObjectToChange: setUserHabitsData,
-                    atributeToChange: "todaysHabits",
-                    atributeNewValue: resp.data
-                })
+                    atributesToChange: ["todaysHabits", "todaysCompletionPercentage"],
+                    atributesNewValues: [resp.data, TodaysHabitsCompletionPercentage(resp.data)]
+                });
             })
             .catch( error => {
                 alert("Parece que houve um erro de contato com o servidor.. :/ Por favor, tente fazer seu login novamente")
@@ -49,7 +48,7 @@ export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
     return (
         <Container backgroundColor = "#F2F2F2" horizontalPadding = "18px" topPadding = "92px" bottomPadding = "120px" >
             <ScreenTitle text = {StructuredTodaysDate()} />
-            <ScreenSubtitle completionPercentage = {completionPercentage} />
+            <ScreenSubtitle completionPercentage = {userHabitsData.todaysCompletionPercentage} />
             { userHabitsData.todaysHabits.map( (habit) => <HabitDueToday key = {habit.id} habit = { habit } /> ) }
             {userHabitsData.todaysHabits.length ? "" : 
                 <ScreenDescription text = {"Você não tem nenhum hábito cadastrado para hoje. Que tal mudarmos isso?"} />

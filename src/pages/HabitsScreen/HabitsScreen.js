@@ -28,8 +28,8 @@ export default function HabitsScreen({ setAreFixedBarsHidden }) {
                 adjustStateObjectData({
                     objectToChange:userHabitsData,
                     setObjectToChange:setUserHabitsData,
-                    atributeToChange: "everyHabit",
-                    atributeNewValue: resp.data
+                    atributesToChange: ["everyHabit"],
+                    atributesNewValues: [resp.data]
                 })
             })
             .catch( error => {

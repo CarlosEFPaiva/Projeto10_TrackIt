@@ -33,8 +33,8 @@ export default function LoginScreen({ setAreFixedBarsHidden }) {
                     onChange = { (e) => adjustStateObjectData({
                         objectToChange:userLoginData,
                         setObjectToChange:setUserLoginData,
-                        atributeToChange:atribute,
-                        atributeNewValue:e.target.value
+                        atributesToChange:[atribute],
+                        atributesNewValues:[e.target.value]
                     })}
                     marginBottom = "6px"
                 />)

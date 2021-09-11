@@ -33,8 +33,8 @@ export default function RegistrationScreen({ setAreFixedBarsHidden }) {
                     onChange = { (e) => adjustStateObjectData({
                         objectToChange:userRegistrationData,
                         setObjectToChange:setUserRegistrationData,
-                        atributeToChange:atribute,
-                        atributeNewValue:e.target.value
+                        atributesToChange:[atribute],
+                        atributesNewValues:[e.target.value]
                     })}
                     marginBottom = "6px"
                 />)

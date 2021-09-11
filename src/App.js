@@ -13,7 +13,7 @@ import HabitRequestContext from "./contexts/HabitsScreen/HabitRequestContext.js"
 
 export default function App() {
   const [userProfileData, setUserProfileData] = useState("");
-  const [userHabitsData, setUserHabitsData] = useState({everyHabit: "", todaysHabits: ""});
+  const [userHabitsData, setUserHabitsData] = useState({everyHabit: "", todaysHabits: "", todaysCompletionPercentage: 0 });
   const [areFixedBarsHidden, setAreFixedBarsHidden] = useState(true);
   const [isHabitRequestBeingValidated, setIsHabitRequestBeingValidated] = useState(false);
   return (
