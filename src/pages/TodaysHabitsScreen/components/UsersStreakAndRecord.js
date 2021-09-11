@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export default function UsersStreakAndRecord() {
+export default function UsersStreakAndRecord({ isHabitComplete, highestSequence, currentSequence }) {
     return (
         <Main>
-            <p>Sequência atual: <UsersStreakAndRecordValue isHabitComplete = {true} > 3 dias </UsersStreakAndRecordValue> </p>
-            <p>Seu recorde: <UsersStreakAndRecordValue> 5 dias </UsersStreakAndRecordValue> </p>
+            <p>Sequência atual: <UsersStreakAndRecordValue isHabitComplete = {isHabitComplete} > { currentSequence } dias </UsersStreakAndRecordValue> </p>
+            <p>Seu recorde: <UsersStreakAndRecordValue> { highestSequence } dias </UsersStreakAndRecordValue> </p>
         </Main>
     );
 }

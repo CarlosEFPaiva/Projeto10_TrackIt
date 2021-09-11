@@ -2,12 +2,16 @@ import styled from "styled-components";
 import UsersStreakAndRecord from "./UsersStreakAndRecord.js";
 import TaskCheckmarkButton from "./TaskCheckmarkButton.js";
 
-export default function HabitDueToday({ isHabitComplete, title }) {
+export default function HabitDueToday({habit:{ name, id, done, highestSequence, currentSequence}}) {
     return (
         <Main>
-            <p>{title}</p>
-            <UsersStreakAndRecord />
-            <TaskCheckmarkButton isHabitComplete = {isHabitComplete} /> 
+            <p>{name}</p>
+            <UsersStreakAndRecord
+                isHabitComplete = { done }
+                highestSequence = { highestSequence }
+                currentSequence = { currentSequence } 
+            />
+            <TaskCheckmarkButton isHabitComplete = { done } /> 
         </Main>
     );
 }

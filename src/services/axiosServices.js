@@ -20,8 +20,7 @@ function sendUserLoginData(body) {
 }
 
 function DownloadUserHabits(userToken) {
-    const config = createConfig(userToken)
-    return axios.get(`${URL}/habits`, config)
+    return axios.get(`${URL}/habits`, createConfig(userToken))
 }
 
 function CreateNewHabit(body, userToken) {
@@ -32,10 +31,15 @@ function SendDeleteRequest(habitId,userToken) {
     return axios.delete(`${URL}/habits/${habitId}`,createConfig(userToken) )
 }
 
+function DownloadHabitsDueToday(userToken) {
+    return axios.get(`${URL}/habits/today`, createConfig(userToken))
+}
+
 export {
     sendUserRegistration,
     sendUserLoginData,
     DownloadUserHabits,
     CreateNewHabit,
-    SendDeleteRequest
+    SendDeleteRequest,
+    DownloadHabitsDueToday
 }

@@ -1,8 +1,7 @@
 import styled from "styled-components"
 
-export default function ScreenDescription({ numberOfData, text }) {
+export default function ScreenDescription({ text }) {
     return (
-        numberOfData !== 0 ? "" :
         <Main>
             {text}
         </Main>

@@ -16,9 +16,9 @@ import IsCreateHabitBoxHidden from "../../contexts/HabitsScreen/IsCreateHabitBox
 
 export default function HabitsScreen({ setAreFixedBarsHidden }) {
     const { userProfileData } = useContext(UserProfileDataContext);
-    const { userHabitsData, setUserHabitsData } = useContext(UserHabitsDataContext)
-    const [isCreateNewHabitBoxHidden, setIsCreateNewHabitBoxHidden ] = useState(true)
-    const [isHabitRequestBeingValidated, setIsHabitRequestBeingValidated] = useState(false);
+    const { userHabitsData, setUserHabitsData } = useContext(UserHabitsDataContext);
+    const { isHabitRequestBeingValidated } = useContext(HabitRequestContext);
+    const [isCreateNewHabitBoxHidden, setIsCreateNewHabitBoxHidden ] = useState(true);
     const browsingHistory = useHistory()
 
     useEffect(() => {
@@ -46,19 +46,16 @@ export default function HabitsScreen({ setAreFixedBarsHidden }) {
         );
     }
     return (
-        <HabitRequestContext.Provider value = {{isHabitRequestBeingValidated, setIsHabitRequestBeingValidated}}>
         <IsCreateHabitBoxHidden.Provider value = {{isCreateNewHabitBoxHidden, setIsCreateNewHabitBoxHidden}}>
             <Container backgroundColor = "#F2F2F2" horizontalPadding = "18px" topPadding = "92px" bottomPadding = "120px" >
                 <ScreenTitle text="Meus Hábitos" />
                 <NewHabitButton />
                 {isCreateNewHabitBoxHidden ? "" : <CreateNewHabitBox /> }
-                {userHabitsData.everyHabit.map( (habit) => <UserHabitBox key = { habit.id } habitId = {habit.id } habit = {habit} /> )}
-                <ScreenDescription
-                    numberOfData = {userHabitsData.everyHabit.length}
-                    text = {"Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"}
-                />
+                {userHabitsData.everyHabit.map( (habit) => <UserHabitBox key = { habit.id } habit = {habit} /> )}
+                {userHabitsData.everyHabit.length ? "" : 
+                    <ScreenDescription text = {"Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"} />
+                }
             </Container>
         </IsCreateHabitBoxHidden.Provider>
-        </HabitRequestContext.Provider>
     );
 }

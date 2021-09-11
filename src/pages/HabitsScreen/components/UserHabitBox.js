@@ -7,7 +7,7 @@ export default function UserHabitBox({ habitId, habit }) {
         <Main>
             <p>{ habit.name }</p>
             <WeekdaysButtons habit = {habit} isUnclickable = {true} />
-            <TrashButton habitId = {habitId} />
+            <TrashButton habitId = {habit.id} />
         </Main>
     );
 }
