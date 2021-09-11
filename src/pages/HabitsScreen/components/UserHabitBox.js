@@ -2,12 +2,12 @@ import styled from "styled-components";
 import WeekdaysButtons from "./WeekdaysButtons.js";
 import TrashButton from "./TrashButton.js";
 
-export default function UserHabitBox({ habit }) {
+export default function UserHabitBox({ habitId, habit }) {
     return (
         <Main>
             <p>{ habit.name }</p>
             <WeekdaysButtons habit = {habit} isUnclickable = {true} />
-            <TrashButton />
+            <TrashButton habitId = {habitId} />
         </Main>
     );
 }

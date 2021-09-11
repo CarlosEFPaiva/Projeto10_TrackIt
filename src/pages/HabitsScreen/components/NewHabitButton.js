@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import isCreateHabitBoxHiddenContext from "../../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext";
 
-export default function NewHabitButton({ setIsBoxHidden }) {
+export default function NewHabitButton() {
+    const { setIsCreateNewHabitBoxHidden } = useContext(isCreateHabitBoxHiddenContext);
 
     return (
-        <Main onClick = {() => setIsBoxHidden(false)}>
+        <Main onClick = {() => setIsCreateNewHabitBoxHidden(false)}>
             +
         </Main>
     );

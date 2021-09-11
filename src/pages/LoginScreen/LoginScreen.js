@@ -6,7 +6,7 @@ import ForwardButton from "../../shared/components/BlueForwardButton.js";
 import MainLogo from "../../shared/components/MainLogo.js";
 import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderlinedMessage.js";
 import StandardInput from "../../shared/components/StandardInput.js";
-import UserProfileDataContext from "../../contexts/UserProfileDataContext.js";
+import UserProfileDataContext from "../../contexts/App/UserProfileDataContext.js";
 import { adjustStateObjectData } from "../../shared/functions/Functions";
 
 export default function LoginScreen({ setAreFixedBarsHidden }) {

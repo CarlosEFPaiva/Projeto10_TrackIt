@@ -28,9 +28,14 @@ function CreateNewHabit(body, userToken) {
     return axios.post(`${URL}/habits`,body, createConfig(userToken))
 }
 
+function SendDeleteRequest(habitId,userToken) {
+    return axios.delete(`${URL}/habits/${habitId}`,createConfig(userToken) )
+}
+
 export {
     sendUserRegistration,
     sendUserLoginData,
     DownloadUserHabits,
-    CreateNewHabit
+    CreateNewHabit,
+    SendDeleteRequest
 }

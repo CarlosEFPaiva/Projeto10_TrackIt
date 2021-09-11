@@ -6,13 +6,13 @@ import TopBar from "./pages/TopBar/TopBar";
 import BottomBar from "./pages/BottomBar/BottomBar";
 import TodaysHabitsScreen from "./pages/TodaysHabitsScreen/TodaysHabitsScreen";
 import { useState } from "react";
-import UserProfileDataContext from "./contexts/UserProfileDataContext";
-import UserHabitsDataContext from "./contexts/UserHabitsDataContext";
+import UserProfileDataContext from "./contexts/App/UserProfileDataContext";
+import UserHabitsDataContext from "./contexts/App/UserHabitsDataContext";
 
 
 export default function App() {
   const [userProfileData, setUserProfileData] = useState("")
-  const [userHabitsData, setUserHabitsData] = useState({everyHabit: [], todaysHabits: []})
+  const [userHabitsData, setUserHabitsData] = useState({everyHabit: "", todaysHabits: ""})
   const [areFixedBarsHidden, setAreFixedBarsHidden] = useState(true)
   return (
     <UserProfileDataContext.Provider value = {{ userProfileData, setUserProfileData }}>

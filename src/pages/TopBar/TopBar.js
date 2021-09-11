@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import UserProfileDataContext from "../../contexts/UserProfileDataContext.js";
+import UserProfileDataContext from "../../contexts/App/UserProfileDataContext.js";
 import FixedBar from "../../shared/styles/FixedBar.js"
 
 export default function TopBar({isHidden}) {
