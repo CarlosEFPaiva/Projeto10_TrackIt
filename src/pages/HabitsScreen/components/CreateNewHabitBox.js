@@ -21,8 +21,8 @@ export default function CreateNewHabitBox() {
                 onChange = { (e) => adjustStateObjectData({
                         objectToChange:newHabit,
                         setObjectToChange:setNewHabit,
-                        atributeToChange:"name",
-                        atributeNewValue:e.target.value
+                        atributesToChange:["name"],
+                        atributesNewValues:[e.target.value]
                     }
                 )}
             />

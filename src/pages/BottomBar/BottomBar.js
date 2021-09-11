@@ -7,7 +7,7 @@ export default function BottomBar({isHidden}) {
         isHidden ? "" : 
         <FixedBar position = "bottom" >
             <MenuOption linkTo = "/habitos" title = "Hábitos"/>
-            <TodaysProgress linkTo = "/hoje" title = "Hoje"/>
+            <TodaysProgress />
             <MenuOption linkTo = "/historico" title = "Histórico"/>
         </FixedBar>
     );
