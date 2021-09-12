@@ -3,7 +3,7 @@ import ScreenTitle from "../../shared/components/ScreenTitle";
 import { useContext, useEffect, useState } from "react";
 import UserHabitsDataContext from "../../contexts/App/UserHabitsDataContext";
 import Loading from "../../shared/components/Loading";
-import RecordedDataScreenContent from "./components/RecordedDataScreenContent";
+import RecordedDataScreenContent from "./components/UserHabitsHistoryScreenContent";
 import { DownloadUserHabitsHistory } from "../../services/axiosServices";
 import UserProfileDataContext from "../../contexts/App/UserProfileDataContext";
 import HabitRequestContext from "../../contexts/HabitsScreen/HabitRequestContext";

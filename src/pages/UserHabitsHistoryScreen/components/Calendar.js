@@ -56,7 +56,6 @@ function adjustMonthYearToPortuguese (monthInNumber, yearInNumber) {
     return `${months[monthInNumber]} de ${yearInNumber}`
 }
 
-
 function printStyledDays(date, userHabitsHistory) {
     const TodaysDate = dayjs(new Date()).format("DD/MM/YYYY");
     const givenDate = dayjs(date).format("DD/MM/YYYY");

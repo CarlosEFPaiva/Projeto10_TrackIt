@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegistrationScreen from "./pages/RegistrationScreen/RegistrationScreen";
 import LoginScreen from "./pages/LoginScreen/LoginScreen.js"
 import HabitsScreen from "./pages/HabitsScreen/HabitsScreen.js";
-import RecordedDataScreen from "./pages/RecordedDataScreen/RecordedDataScreen.js";
+import RecordedDataScreen from "./pages/UserHabitsHistoryScreen/UserHabitsHistoryScreen.js";
 import TopBar from "./pages/TopBar/TopBar";
 import BottomBar from "./pages/BottomBar/BottomBar";
 import TodaysHabitsScreen from "./pages/TodaysHabitsScreen/TodaysHabitsScreen";
