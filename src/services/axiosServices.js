@@ -39,6 +39,10 @@ function SendHabitSelectionState( habitId, selectionState ,userToken ) {
     return axios.post(`${URL}/habits/${habitId}/${selectionState}`, {} ,createConfig(userToken))
 }
 
+function DownloadUserHabitsHistory(userToken) {
+    return axios.get(`${URL}/habits/history/daily`, createConfig(userToken))
+}
+
 export {
     sendUserRegistration,
     sendUserLoginData,
@@ -46,5 +50,6 @@ export {
     CreateNewHabit,
     SendDeleteRequest,
     DownloadHabitsDueToday,
-    SendHabitSelectionState
+    SendHabitSelectionState,
+    DownloadUserHabitsHistory
 }

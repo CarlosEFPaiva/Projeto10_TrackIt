@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegistrationScreen from "./pages/RegistrationScreen/RegistrationScreen";
 import LoginScreen from "./pages/LoginScreen/LoginScreen.js"
 import HabitsScreen from "./pages/HabitsScreen/HabitsScreen.js";
+import RecordedDataScreen from "./pages/RecordedDataScreen/RecordedDataScreen.js";
 import TopBar from "./pages/TopBar/TopBar";
 import BottomBar from "./pages/BottomBar/BottomBar";
 import TodaysHabitsScreen from "./pages/TodaysHabitsScreen/TodaysHabitsScreen";
@@ -16,6 +17,7 @@ export default function App() {
   const [userHabitsData, setUserHabitsData] = useState({everyHabit: "", todaysHabits: "", todaysCompletionPercentage: 0 });
   const [areFixedBarsHidden, setAreFixedBarsHidden] = useState(true);
   const [isHabitRequestBeingValidated, setIsHabitRequestBeingValidated] = useState(false);
+
   return (
     <UserProfileDataContext.Provider value = {{ userProfileData, setUserProfileData }}>
       <UserHabitsDataContext.Provider value = {{ userHabitsData, setUserHabitsData }}>
@@ -35,6 +37,9 @@ export default function App() {
               </Route>
               <Route path = "/hoje" exact>
                 <TodaysHabitsScreen setAreFixedBarsHidden = { setAreFixedBarsHidden } />
+              </Route>
+              <Route path = "/historico" exact>
+                <RecordedDataScreen setAreFixedBarsHidden = { setAreFixedBarsHidden } />
               </Route>
             </Switch>
           </Router>

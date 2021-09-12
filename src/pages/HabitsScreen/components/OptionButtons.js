@@ -52,7 +52,7 @@ function validateInputValues(newHabit, userHabitsData) {
         alert("Que hábito é esse que não se pratica dia nenhum? Selecione pelo menos um dia da semana!");
         return false;
     } else if(userHabitsData.everyHabit.find( ({name}) => name.toLowerCase() === newHabit.name.toLowerCase() )) {
-        alert("Parece que você já tem um hábito com esse nome.. Não acha melhor editar ele?");
+        alert("Parece que você já tem um hábito com esse nome!");
         return false;
     }
     return true;
