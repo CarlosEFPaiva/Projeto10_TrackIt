@@ -28,28 +28,30 @@ export default function LoginScreen({ setAreFixedBarsHidden }) {
     return (
         <Container horizontalPadding = {"36px"} >
             <MainLogo />
-            { inputsData.map( ({placeholder, type, value, atribute}, index) => 
-                <StandardInput 
-                    key = {index}
-                    placeholder = {placeholder}
-                    type = {type}
-                    disabled = {isDataBeingValidated}
-                    value = {value}
-                    onChange = { (e) => adjustStateObjectData({
-                        objectToChange:userLoginData,
-                        setObjectToChange:setUserLoginData,
-                        atributesToChange:[atribute],
-                        atributesNewValues:[e.target.value]
-                    })}
-                    marginBottom = "6px"
-                />)
-            }
-            <ForwardButton 
-                onClick = {() => CheckAndSendLoginData({userLoginData, browsingHistory, setIsDataBeingValidated, setUserProfileData})}
-                text = "Entrar"
-                marginBottom = "25px"
-                isDataBeingValidated = {isDataBeingValidated}
-            />
+            <form onSubmit = {(event) => CheckAndSendLoginData({ event, userLoginData, browsingHistory, setIsDataBeingValidated, setUserProfileData })}>
+                { inputsData.map( ({placeholder, type, value, atribute}, index) => 
+                    <StandardInput 
+                        key = {index}
+                        placeholder = {placeholder}
+                        type = {type}
+                        disabled = {isDataBeingValidated}
+                        value = {value}
+                        onChange = { (e) => adjustStateObjectData({
+                            objectToChange:userLoginData,
+                            setObjectToChange:setUserLoginData,
+                            atributesToChange:[atribute],
+                            atributesNewValues:[e.target.value]
+                        })}
+                        marginBottom = "6px"
+                    />)
+                }
+                <ForwardButton 
+                    type = "submit"
+                    text = "Entrar"
+                    marginBottom = "25px"
+                    isDataBeingValidated = {isDataBeingValidated}
+                />
+            </form>
             <UnderButtonMessageLink linkTo = "/cadastro" text = "Não tem uma conta? Cadastre-se!"/>
         </Container>
     );

@@ -21,7 +21,8 @@ function isInputValid(inputType,inputValue) {
     return isValid;
 }
 
-function CheckAndSendLoginData({ userLoginData, browsingHistory, setIsDataBeingValidated, setUserProfileData }) {
+function CheckAndSendLoginData({ event, userLoginData, browsingHistory, setIsDataBeingValidated, setUserProfileData }) {
+    event.preventDefault();
     if (!isInputValid("email",userLoginData.email)) { return };
     if (!isInputValid("senha",userLoginData.password)) { return };
     setIsDataBeingValidated(true)

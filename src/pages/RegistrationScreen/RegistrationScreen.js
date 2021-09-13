@@ -23,30 +23,32 @@ export default function RegistrationScreen({ setAreFixedBarsHidden }) {
     return (
         <Container horizontalPadding = {"36px"} >
             <MainLogo />
-            { inputsData.map( ({placeholder, type, value, atribute}, index) => 
-                <StandardInput 
-                    key = {index}
-                    placeholder = {placeholder}
-                    type = {type}
-                    disabled = {isDataBeingValidated}
-                    value = {value}
-                    onChange = { (e) => adjustStateObjectData({
-                        objectToChange:userRegistrationData,
-                        setObjectToChange:setUserRegistrationData,
-                        atributesToChange:[atribute],
-                        atributesNewValues:[e.target.value]
-                    })}
-                    marginBottom = "6px"
-                />)
-            }
-            <ForwardButton 
-                text = "Cadastrar"
-                marginBottom = "25px"
-                isDataBeingValidated = {isDataBeingValidated}
-                onClick = { () => 
-                    checkValidationAndSendRegistrationValues({ userRegistrationData, setIsDataBeingValidated, browsingHistory }) 
-                } 
-            />
+            <form onSubmit = { (event) => 
+                checkValidationAndSendRegistrationValues({ event, userRegistrationData, setIsDataBeingValidated, browsingHistory }) }
+            >
+                { inputsData.map( ({placeholder, type, value, atribute}, index) => 
+                    <StandardInput 
+                        key = {index}
+                        placeholder = {placeholder}
+                        type = {type}
+                        disabled = {isDataBeingValidated}
+                        value = {value}
+                        onChange = { (e) => adjustStateObjectData({
+                            objectToChange:userRegistrationData,
+                            setObjectToChange:setUserRegistrationData,
+                            atributesToChange:[atribute],
+                            atributesNewValues:[e.target.value]
+                        })}
+                        marginBottom = "6px"
+                    />)
+                }
+                <ForwardButton 
+                    text = "Cadastrar"
+                    marginBottom = "25px"
+                    isDataBeingValidated = {isDataBeingValidated}
+                    type = "submit"
+                />
+            </form>
             <UnderButtonMessageLink linkTo = "/" text = "Já tem uma conta? Faça login!"/>
         </Container>
     );

@@ -49,7 +49,8 @@ function validateImageUrl({ userRegistrationData, setIsDataBeingValidated, brows
 }
 
 
-function checkValidationAndSendRegistrationValues({ userRegistrationData, setIsDataBeingValidated, browsingHistory }){
+function checkValidationAndSendRegistrationValues({ event, userRegistrationData, setIsDataBeingValidated, browsingHistory }){
+    event.preventDefault()
     if (!isInputValid("email",userRegistrationData.email)) { return };
     if (!isInputValid("senha",userRegistrationData.password)) { return };
     if (!isInputValid("nome",userRegistrationData.name)) { return };
