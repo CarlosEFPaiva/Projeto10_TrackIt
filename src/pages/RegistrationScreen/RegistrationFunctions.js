@@ -1,22 +1,32 @@
 import { sendUserRegistration } from "../../services/axiosServices.js";
+import Swal from 'sweetalert2';
 
 function isInputValid(inputType,inputValue) {
     const isEmailValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const inputsValidationConditions = [
-        {type: "email", condition: isEmailValid.test(String(inputValue).toLowerCase())},
-        {type: "senha", condition: inputValue.length > 5},
-        {type: "nome", condition: inputValue.length > 2}
+        {type: "email", errortext: "Por favor, digite um email válido", condition: isEmailValid.test(String(inputValue).toLowerCase())},
+        {type: "senha", errortext: "Sua senha precisa ter pelo menos 6 caracteres!", condition: inputValue.length > 5},
+        {type: "nome", errortext: "Seu nome precisa ter pelo menos 3 caracteres!", condition: inputValue.length > 2}
     ]
 
     const isValid = inputsValidationConditions.find( ({ type }) => type === inputType ).condition
+    const errorMessage = inputsValidationConditions.find( ({ type }) => type === inputType ).errortext;
     if(!isValid) {
-        alert(`Por favor, insira um valor válido para ${inputType}`)
+        Swal.fire({
+            title: `Oops!`,
+            text: errorMessage,
+            icon: 'error',
+          });
     }
     return isValid;
 }
 
 function registrationSuccessfullyCreated(setIsDataBeingValidated, browsingHistory ) {
-    alert(`Cadastro criado com sucesso!`);
+    Swal.fire({
+        title: `Beleza!`,
+        text: `Cadastro criado com sucesso!`,
+        icon: 'success',
+      });
     setIsDataBeingValidated(false);
     browsingHistory.push("/");
 }
@@ -24,9 +34,17 @@ function registrationSuccessfullyCreated(setIsDataBeingValidated, browsingHistor
 function displayRegistrationError(error, setIsDataBeingValidated ) {
     setIsDataBeingValidated(false);
     if (error.response.status) {
-        alert(`Já existe um usuário com este email!`)
+        Swal.fire({
+            title: `Oops!`,
+            text: `Já existe um usuário com este email!`,
+            icon: 'error',
+          });
     } else {
-        alert(`Parece que houve algum problema com o cadastro! Por favor, tente novamente mais tarde`);
+        Swal.fire({
+            title: `Parece que houve algum problema com o cadastro!!`,
+            text: `Por favor, tente novamente mais tarde`,
+            icon: 'error',
+          });
     }
 }
 
@@ -42,7 +60,11 @@ function validateImageUrl({ userRegistrationData, setIsDataBeingValidated, brows
             } )
     });
     UrlCheck.addEventListener('error', function() {
-        alert(`Por favor, insira uma URL válida para foto`);
+        Swal.fire({
+            title: `Oops!`,
+            text: `Por favor, insira uma URL válida para foto`,
+            icon: 'error',
+          });
         setIsDataBeingValidated(false);
     });
     UrlCheck.src = userRegistrationData.image;

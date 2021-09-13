@@ -12,7 +12,8 @@ import UserHabitsDataContext from "../../contexts/App/UserHabitsDataContext.js";
 import { adjustStateObjectData } from "../../shared/functions/Functions.js";
 import Loading from "../../shared/components/Loading.js";
 import HabitRequestContext from "../../contexts/HabitsScreen/HabitRequestContext.js";
-import IsCreateHabitBoxHidden from "../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext.js"
+import IsCreateHabitBoxHidden from "../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext.js";
+import Swal from 'sweetalert2';
 
 export default function HabitsScreen({ setAreFixedBarsHidden }) {
     const { userProfileData } = useContext(UserProfileDataContext);
@@ -33,7 +34,11 @@ export default function HabitsScreen({ setAreFixedBarsHidden }) {
                 })
             })
             .catch( error => {
-                alert("Parece que houve um erro de contato com o servidor.. :/ Por favor, tente fazer seu login novamente")
+                Swal.fire({
+                    title: 'Parece que houve algum erro!',
+                    text: 'Nos desculpe! :/ Tente novamente mais tarde',
+                    icon: 'error',
+                  });
                 browsingHistory.push("/")
             })
     },[isHabitRequestBeingValidated]);

@@ -5,7 +5,8 @@ import UserProfileDataContext from "../../../contexts/App/UserProfileDataContext
 import HabitRequestContext from "../../../contexts/HabitsScreen/HabitRequestContext";
 import { SendHabitSelectionState } from "../../../services/axiosServices";
 import greenLoadingGif from "../../../assets/img/GreenLoading.gif";
-import lightGreenLoadingGif from "../../../assets/img/LightGreenLoading.gif"
+import lightGreenLoadingGif from "../../../assets/img/LightGreenLoading.gif";
+import Swal from 'sweetalert2';
 
 export default function TaskCheckmarkButton({ habitId, isHabitComplete }) {
     const { userProfileData } = useContext(UserProfileDataContext);
@@ -20,7 +21,11 @@ export default function TaskCheckmarkButton({ habitId, isHabitComplete }) {
             setIsThisHabitBeingUpdated(false);
         })
         .catch( () => {
-            alert("Oh não, parece que houve um erro! :/ Tente novamente mais tarde...")
+            Swal.fire({
+                title: `Parece que houve algum erro!`,
+                text: `Por favor, tente novamente mais tarde`,
+                icon: 'error',
+              });
             setIsHabitRequestBeingValidated(false);
             setIsThisHabitBeingUpdated(false);
         })

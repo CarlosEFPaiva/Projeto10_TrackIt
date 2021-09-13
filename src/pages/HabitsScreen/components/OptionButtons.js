@@ -6,6 +6,7 @@ import UserProfileDataContext from "../../../contexts/App/UserProfileDataContext
 import UserHabitsDataContext from "../../../contexts/App/UserHabitsDataContext";
 import isCreateHabitBoxHiddenContext from "../../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext";
 import HabitRequestContext from "../../../contexts/HabitsScreen/HabitRequestContext";
+import Swal from 'sweetalert2';
 
 export default function OptionButtons({ newHabit, setNewHabit }) {
     const { userProfileData } = useContext(UserProfileDataContext);
@@ -19,13 +20,21 @@ export default function OptionButtons({ newHabit, setNewHabit }) {
             setIsHabitRequestBeingValidated(true);
             CreateNewHabit(newHabit, userProfileData.token)
                 .then( resp => {
-                    alert("Hábito criado! Agora precisa seguir, ok? :)");
+                    Swal.fire({
+                            title: 'Hábito criado!',
+                            text: 'Agora você só precisa segui-lo, ok?',
+                            icon: 'success',
+                          });
                     setIsCreateNewHabitBoxHidden(true);
                     setNewHabit({name:"", days:[]});
                     setIsHabitRequestBeingValidated(false);
                 })
                 .catch( error => {
-                    alert("Parece que houve algum erro! :/ Tente novamente mais tarde");
+                    Swal.fire({
+                        title: 'Parece que houve algum erro!',
+                        text: 'Nos desculpe! :/ Tente novamente mais tarde',
+                        icon: 'error',
+                      });
                     setIsHabitRequestBeingValidated(false);
                 });
         }
@@ -46,13 +55,25 @@ export default function OptionButtons({ newHabit, setNewHabit }) {
 
 function validateInputValues(newHabit, userHabitsData) {
     if (!newHabit.name.length || newHabit.name.length > 40) {
-        alert("Por favor, preencha o campo do nome do hábito com até 40 caracteres");
+        Swal.fire({
+            title: 'Esse nome não está legal!',
+            text: 'Preencha o campo do nome do hábito com até 40 caracteres',
+            icon: 'error',
+          });
         return false;
     } else if (!newHabit.days.length) {
-        alert("Que hábito é esse que não se pratica dia nenhum? Selecione pelo menos um dia da semana!");
+        Swal.fire({
+            title: "Selecione pelo menos um dia da semana!",
+            text: 'Que hábito é esse que não se pratica dia nenhum?',
+            icon: 'error',
+          });
         return false;
     } else if(userHabitsData.everyHabit.find( ({name}) => name.toLowerCase() === newHabit.name.toLowerCase() )) {
-        alert("Parece que você já tem um hábito com esse nome!");
+        Swal.fire({
+            title: "Oops!",
+            text: 'Parece que você já tem um hábito com esse nome!',
+            icon: 'error',
+          });
         return false;
     }
     return true;

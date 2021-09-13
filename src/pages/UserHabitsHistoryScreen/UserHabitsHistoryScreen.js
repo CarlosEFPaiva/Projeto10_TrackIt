@@ -7,22 +7,27 @@ import { DownloadUserHabitsHistory } from "../../services/axiosServices";
 import UserProfileDataContext from "../../contexts/App/UserProfileDataContext";
 import HabitRequestContext from "../../contexts/HabitsScreen/HabitRequestContext";
 import { useHistory } from "react-router";
+import Swal from 'sweetalert2';
 
 export default function RecordedDataScreen({ setAreFixedBarsHidden }) {
     const { userProfileData } = useContext(UserProfileDataContext);
     const [ userHabitsHistory, setUserHabitsHistory ] = useState("");
     const { isHabitRequestBeingValidated } = useContext(HabitRequestContext);
-    const browsingHistory = useHistory()
+    const browsingHistory = useHistory();
 
     useEffect( () => {
         setAreFixedBarsHidden(false);
         DownloadUserHabitsHistory(userProfileData.token)
         .then( resp => {
-            setUserHabitsHistory(resp.data)
+            setUserHabitsHistory(resp.data);
         })
         .catch( error => {
-            alert("Parece que houve um erro de contato com o servidor.. :/ Por favor, tente fazer seu login novamente")
-            browsingHistory.push("/")
+            Swal.fire({
+                title: `Parece que houve algum erro!`,
+                text: `Por favor, tente fazer seu login novamente`,
+                icon: 'error',
+              });
+            browsingHistory.push("/");
         })
     },[isHabitRequestBeingValidated])
     if (!userHabitsHistory) {

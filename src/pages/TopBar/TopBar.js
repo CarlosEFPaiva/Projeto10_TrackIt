@@ -2,17 +2,26 @@ import { useContext } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import UserProfileDataContext from "../../contexts/App/UserProfileDataContext.js";
-import FixedBar from "../../shared/styles/FixedBar.js"
+import FixedBar from "../../shared/styles/FixedBar.js";
+import Swal from 'sweetalert2';
 
 export default function TopBar({isHidden}) {
     const { userProfileData } = useContext(UserProfileDataContext)
     const browsingHistory = useHistory();
 
     function logOut() {
-        if (window.confirm("Deseja realmente sair?")) {
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: 'Deseja realmente sair?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim!',
+            cancelButtonText: 'Cancelar'
+          })
+          .then( result => { if(result.isConfirmed) {
             localStorage.removeItem("TrackItLogin");
             browsingHistory.push("/");
-        }
+          }})
     }
 
     return (

@@ -12,6 +12,7 @@ import { DownloadHabitsDueToday } from "../../services/axiosServices.js";
 import { adjustStateObjectData, TodaysHabitsCompletionPercentage} from "../../shared/functions/Functions";
 import { useHistory } from "react-router";
 import HabitRequestContext from "../../contexts/HabitsScreen/HabitRequestContext";
+import Swal from 'sweetalert2';
 
 export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
 
@@ -32,7 +33,11 @@ export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
                 });
             })
             .catch( error => {
-                alert("Parece que houve um erro de contato com o servidor.. :/ Por favor, tente fazer seu login novamente")
+                Swal.fire({
+                    title: `Parece que houve algum erro!`,
+                    text: `Por favor, tente fazer seu login novamente`,
+                    icon: 'error',
+                  });
                 browsingHistory.push("/")
             })
     },[isHabitRequestBeingValidated])

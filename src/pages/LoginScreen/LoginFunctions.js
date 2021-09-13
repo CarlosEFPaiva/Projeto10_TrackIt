@@ -1,5 +1,5 @@
 import {sendUserLoginData } from "../../services/axiosServices.js";
-
+import Swal from 'sweetalert2';
 
 function sendLoginToLocalStorage(userProfileData) {
     const stringfiedUserData = JSON.stringify(userProfileData);
@@ -10,13 +10,18 @@ function sendLoginToLocalStorage(userProfileData) {
 function isInputValid(inputType,inputValue) {
     const isEmailValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const inputsValidationConditions = [
-        {type: "email", condition: isEmailValid.test(String(inputValue).toLowerCase())},
-        {type: "senha", condition: inputValue.length > 5}
+        {type: "email", errortext: "Por favor, digite um email válido",condition: isEmailValid.test(String(inputValue).toLowerCase())},
+        {type: "senha", errortext: "Sua senha precisa ter pelo menos 6 caracteres!", condition: inputValue.length > 5}
     ]
 
-    const isValid = inputsValidationConditions.find( ({ type }) => type === inputType ).condition
+    const isValid = inputsValidationConditions.find( ({ type }) => type === inputType ).condition;
+    const errorMessage = inputsValidationConditions.find( ({ type }) => type === inputType ).errortext;
     if(!isValid) {
-        alert(`Por favor, digite um valor válido de ${inputType}`)
+        Swal.fire({
+            title: `Oops!`,
+            text: errorMessage,
+            icon: 'error',
+          });
     }
     return isValid;
 }
@@ -42,9 +47,17 @@ function CheckAndSendLoginData({ event, userLoginData, browsingHistory, setIsDat
         })
         .catch( error => {
             if (error.response.status === 401) {
-                alert("Parece que suas informações de login e senha estão incorretas, tente novamente")
+                Swal.fire({
+                    title: `Oops!`,
+                    text: "Parece que seu email e senha não conferem! Tente novamente",
+                    icon: 'error',
+                  });
             } else {
-                alert("Parece que ocorreu algum erro.. :/ Tente novamente mais tarde!")
+                Swal.fire({
+                    title: `Oops!`,
+                    text: "Parece que ocorreu algum erro.. :/ Tente novamente mais tarde!",
+                    icon: 'error',
+                  });
             }
             setIsDataBeingValidated(false)
         })
