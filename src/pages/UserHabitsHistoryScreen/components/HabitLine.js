@@ -17,7 +17,9 @@ const Main = styled.div`
     font-size: 18px;
     display: flex;
     align-items: center;
-    margin: 4px 0px;
+    margin: 6px 0px;
+    line-height: 20px;
+    text-align: center;
 `
 
 const Box = styled.div`

@@ -1,6 +1,12 @@
 import {sendUserLoginData } from "../../services/axiosServices.js";
 
 
+function sendLoginToLocalStorage(userProfileData) {
+    const stringfiedUserData = JSON.stringify(userProfileData);
+    localStorage.setItem("TrackItLogin", stringfiedUserData);
+    
+}
+
 function isInputValid(inputType,inputValue) {
     const isEmailValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const inputsValidationConditions = [
@@ -22,13 +28,15 @@ function CheckAndSendLoginData({ userLoginData, browsingHistory, setIsDataBeingV
     sendUserLoginData(userLoginData)
         .then( resp => {
             setIsDataBeingValidated(false)
-            setUserProfileData({
+            const userProfileData = {
                 id: resp.data.id,
                 email: resp.data.email,
                 name: resp.data.name,
                 image: resp.data.image,
                 token: resp.data.token
-            })
+            }
+            setUserProfileData(userProfileData)
+            sendLoginToLocalStorage(userProfileData)
             browsingHistory.push("/hoje")
         })
         .catch( error => {
@@ -41,4 +49,8 @@ function CheckAndSendLoginData({ userLoginData, browsingHistory, setIsDataBeingV
         })
 }
 
-export default CheckAndSendLoginData
+export default CheckAndSendLoginData;
+
+function checkLocalStorage() {
+
+}

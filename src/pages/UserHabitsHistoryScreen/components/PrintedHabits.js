@@ -3,7 +3,6 @@ import { AiOutlineRollback } from "react-icons/ai";
 import HabitLine from "./HabitLine";
 
 export default function PrintedHabits({ givenDate, givenDateHabitsList, setClickedDate }) {
-    console.log(givenDateHabitsList);
     return (
         <Main>
             <Title> Hábitos do dia {givenDate} </Title>
@@ -28,14 +27,15 @@ const Main = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     position: relative;
 `
 
 const Title = styled.p`
-    font-size: 18px;
+    width: 100%;
+    font-size: 17px;
     display: inline-block;
-    margin-bottom: 20px;
+    margin: 3px 0px 20px;
+    padding-left: 50px;
 `
 
 const Button = styled.button`

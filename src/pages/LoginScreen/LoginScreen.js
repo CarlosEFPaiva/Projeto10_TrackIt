@@ -20,6 +20,11 @@ export default function LoginScreen({ setAreFixedBarsHidden }) {
     const browsingHistory = useHistory()
     const { setUserProfileData } = useContext(UserProfileDataContext);
 
+    if(localStorage.getItem("TrackItLogin")) {
+        setUserProfileData( JSON.parse(localStorage.getItem("TrackItLogin")) );
+        browsingHistory.push("/hoje");
+    }
+
     return (
         <Container horizontalPadding = {"36px"} >
             <MainLogo />

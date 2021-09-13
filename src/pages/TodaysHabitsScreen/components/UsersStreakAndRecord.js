@@ -5,8 +5,16 @@ export default function UsersStreakAndRecord({ isHabitComplete, highestSequence,
 
     return (
         <Main>
-            <p>Sequência atual: <UsersStreakAndRecordValue isHabitComplete = {isHabitComplete} > { currentSequence } dias </UsersStreakAndRecordValue> </p>
-            <p>Seu recorde: <UsersStreakAndRecordValue isRecordTied = {isRecordTied} > { highestSequence } dias </UsersStreakAndRecordValue> </p>
+            <p>{"Sequência atual: "}
+                <UsersStreakAndRecordValue isHabitComplete = {isHabitComplete} > 
+                    { currentSequence } {currentSequence > 1 ? "dias" : "dia" }
+                </UsersStreakAndRecordValue>
+            </p>
+            <p>{"Seu recorde: "}
+                <UsersStreakAndRecordValue isRecordTied = {isRecordTied} >
+                    { highestSequence } {highestSequence > 1 ? "dias" : "dia" }
+                </UsersStreakAndRecordValue>
+            </p>
         </Main>
     );
 }
