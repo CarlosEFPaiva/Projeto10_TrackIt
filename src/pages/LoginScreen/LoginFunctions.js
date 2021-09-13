@@ -64,7 +64,3 @@ function CheckAndSendLoginData({ event, userLoginData, browsingHistory, setIsDat
 }
 
 export default CheckAndSendLoginData;
-
-function checkLocalStorage() {
-
-}

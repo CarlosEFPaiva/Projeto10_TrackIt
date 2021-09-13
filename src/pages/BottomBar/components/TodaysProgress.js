@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { Link } from "react-router-dom"
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import {
   CircularProgressbar,
   buildStyles
@@ -39,10 +39,4 @@ const Main = styled.div`
     position: fixed;
     left: calc( ( 100% - 91px ) / 2);
     bottom: 10px;
-    //background-color: #52B6FF;
-    //display: flex;
-    //align-items: center;
-    //justify-content: center;
-    //color: #FFFFFF;
-    //font-size: 40px;
 `

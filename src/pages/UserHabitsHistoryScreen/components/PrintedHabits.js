@@ -49,14 +49,3 @@ const Button = styled.button`
     left: 15px;
     top: 15px;
 `
-
-
-
-/*function showDatesHabits(date, userHabitsHistory) {
-    const givenDate = dayjs(date).format("DD/MM/YYYY");
-    const UserGivenDateHabitHistory = userHabitsHistory.find( ({day}) => day === givenDate );
-    if (UserGivenDateHabitHistory && givenDate !== TodaysDate ) {
-
-    }
-
-}*/
