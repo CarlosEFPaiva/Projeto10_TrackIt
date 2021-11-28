@@ -70,7 +70,6 @@ async function deleteHabit(setIsHabitRequestBeingValidated, habitId, userProfile
             setIsHabitRequestBeingValidated(false)
         })
     } 
-    
 }
 
 function selectDay(clickedDay, isUnclickable, habit, setHabit) {

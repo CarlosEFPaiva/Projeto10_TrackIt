@@ -4,14 +4,16 @@ import { MdDone } from "react-icons/md";
 
 export default function HabitLine({habit, isDone}) {
     return (
-        <Main>
+        <Wrapper>
             {habit}
-            <Box isDone = {isDone} > { isDone ? <MdDone /> : <ImCross /> } </Box>
-        </Main>
+            <Box isDone={isDone} >
+                {isDone ? <MdDone /> : <ImCross />}
+            </Box>
+        </Wrapper>
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     max-width: 100%;
     word-wrap: break-word;
     font-size: 18px;

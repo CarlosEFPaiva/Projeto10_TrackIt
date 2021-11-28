@@ -7,7 +7,7 @@ export default function RecordedDataScreenContent({ userHabitsHistory }) {
     const [clickedDate, setClickedDate] = useState(false);
 
     return (
-        <Main>
+        <Wrapper>
             { clickedDate ? 
             <PrintedHabits
                 givenDate = { clickedDate }
@@ -19,11 +19,11 @@ export default function RecordedDataScreenContent({ userHabitsHistory }) {
                 userHabitsHistory = { userHabitsHistory }
                 setClickedDate = { setClickedDate }
             />}
-        </Main>
+        </Wrapper>
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     width: 80vw;
     margin-top: 20px;
     border-radius: 5px;

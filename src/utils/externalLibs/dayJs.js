@@ -14,6 +14,34 @@ function structuredTodaysDate() {
     return `${WeekdayName}, ${dayjs().format('DD/MM')}`
 }
 
+function showDatesHabits(date, userHabitsHistory, setClickedDate) {
+    const TodaysDate = dayjs(new Date()).format("DD/MM/YYYY");
+    const givenDate = dayjs(date).format("DD/MM/YYYY");
+    const UserGivenDateHabitHistory = userHabitsHistory.find( ({day}) => day === givenDate );
+    if (UserGivenDateHabitHistory && givenDate !== TodaysDate ) {
+        setClickedDate(givenDate);
+    }
+}
+
+function printStyledDays(date, userHabitsHistory, DayButton) {
+    const TodaysDate = dayjs(new Date()).format("DD/MM/YYYY");
+    const givenDate = dayjs(date).format("DD/MM/YYYY");
+    const UserGivenDateHabitHistory = userHabitsHistory.find( ({day}) => day === givenDate );
+    let buttonClass = "";
+    if (UserGivenDateHabitHistory && givenDate !== TodaysDate ) {
+        if (UserGivenDateHabitHistory.habits.every( ({done}) => done )) {
+            buttonClass = "complete-habits";
+        } else {
+            buttonClass = "incomplete-habits";
+        }
+    }
+    return (
+        <DayButton className = { buttonClass } >{dayjs(date).format("DD")}</DayButton>
+    );
+}
+
 export {
-    structuredTodaysDate
+    structuredTodaysDate,
+    showDatesHabits,
+    printStyledDays,
 }

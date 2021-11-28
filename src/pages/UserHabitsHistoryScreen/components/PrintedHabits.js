@@ -4,8 +4,10 @@ import HabitLine from "./HabitLine";
 
 export default function PrintedHabits({ givenDate, givenDateHabitsList, setClickedDate }) {
     return (
-        <Main>
-            <Title> Hábitos do dia {givenDate} </Title>
+        <Wrapper>
+            <Title>
+                Hábitos do dia {givenDate}
+            </Title>
             <Button onClick = { () => setClickedDate(false) } > <AiOutlineRollback /> </Button>
             {givenDateHabitsList.map( ({ name, done },index) => 
             <HabitLine
@@ -13,11 +15,11 @@ export default function PrintedHabits({ givenDate, givenDateHabitsList, setClick
                 habit = {name}
                 isDone = {done} 
             />)}
-        </Main>
+        </Wrapper>
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     width: 100%;
     height: 300px;
     padding: 20px 5px;
