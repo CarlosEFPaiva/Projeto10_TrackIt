@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import HabitRequestContext from '../../contexts/HabitsScreen/HabitRequestContext';
+
 import Container from '../../shared/styles/Container';
 import ScreenTitle from '../../shared/components/ScreenTitle';
 import Loading from '../../shared/components/Loading';
 import RecordedDataScreenContent from './components/UserHabitsHistoryScreenContent';
-import { getAndDisplayHabitsHistory } from './UserHabitsHistoryFunctions';
 import UserProfileDataContext from '../../contexts/App/UserProfileDataContext';
-import HabitRequestContext from '../../contexts/HabitsScreen/HabitRequestContext';
+
+import { getAndDisplayHabitsHistory } from './UserHabitsHistoryFunctions';
 
 export default function RecordedDataScreen({ setAreFixedBarsHidden }) {
     const { userProfileData } = useContext(UserProfileDataContext);

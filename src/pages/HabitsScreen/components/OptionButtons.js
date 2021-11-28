@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import { useContext } from 'react';
-import ForwardButton from '../../../shared/components/BlueForwardButton';
+
 import UserProfileDataContext from '../../../contexts/App/UserProfileDataContext';
 import UserHabitsDataContext from '../../../contexts/App/UserHabitsDataContext';
 import isCreateHabitBoxHiddenContext from '../../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext';
+
+import ForwardButton from '../../../shared/components/BlueForwardButton';
 import HabitRequestContext from '../../../contexts/HabitsScreen/HabitRequestContext';
+
 import { checkValuesAndSendNewHabitToServer } from '../HabitsScreenFunctions';
 
 export default function OptionButtons({ newHabit, setNewHabit }) {

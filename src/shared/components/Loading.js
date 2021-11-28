@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import LoadingGif from '../../assets/img/Loading-bgGray.gif';
 
 export default function Loading() {

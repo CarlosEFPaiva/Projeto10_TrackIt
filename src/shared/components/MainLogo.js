@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import trackItLogo from '../../assets/img/Logo.png';
 
 export default function MainLogo() {

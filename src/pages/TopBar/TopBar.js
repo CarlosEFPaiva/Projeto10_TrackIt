@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import UserProfileDataContext from '../../contexts/App/UserProfileDataContext.js';
+
 import FixedBar from '../../shared/styles/FixedBar.js';
+
 import { logOut } from './TopBarFunctions.js';
 
 export default function TopBar({ isHidden }) {

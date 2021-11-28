@@ -1,8 +1,10 @@
+import { useContext } from 'react/cjs/react.development';
 import styled from 'styled-components';
 import { BsTrash } from 'react-icons/bs';
-import { useContext } from 'react/cjs/react.development';
+
 import UserProfileDataContext from '../../../contexts/App/UserProfileDataContext';
 import HabitRequestContext from '../../../contexts/HabitsScreen/HabitRequestContext';
+
 import { deleteHabit } from '../HabitsScreenFunctions';
 
 export default function TrashButton({ habitId }) {

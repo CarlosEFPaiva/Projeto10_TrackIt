@@ -1,5 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+
+import UserProfileDataContext from './contexts/App/UserProfileDataContext';
+import UserHabitsDataContext from './contexts/App/UserHabitsDataContext';
+import HabitRequestContext from './contexts/HabitsScreen/HabitRequestContext.js';
+
+import GlobalStyles from './assets/css/GlobalStyles';
+import GlobalReset from './assets/css/GlobalReset';
+
 import RegistrationScreen from './pages/RegistrationScreen/RegistrationScreen';
 import LoginScreen from './pages/LoginScreen/LoginScreen.js';
 import HabitsScreen from './pages/HabitsScreen/HabitsScreen.js';
@@ -7,11 +15,6 @@ import RecordedDataScreen from './pages/UserHabitsHistoryScreen/UserHabitsHistor
 import TopBar from './pages/TopBar/TopBar';
 import BottomBar from './pages/BottomBar/BottomBar';
 import TodaysHabitsScreen from './pages/TodaysHabitsScreen/TodaysHabitsScreen';
-import UserProfileDataContext from './contexts/App/UserProfileDataContext';
-import UserHabitsDataContext from './contexts/App/UserHabitsDataContext';
-import HabitRequestContext from './contexts/HabitsScreen/HabitRequestContext.js';
-import GlobalStyles from './assets/css/GlobalStyles';
-import GlobalReset from './assets/css/GlobalReset';
 
 export default function App() {
     const [userProfileData, setUserProfileData] = useState('');

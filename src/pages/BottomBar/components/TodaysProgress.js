@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { useContext } from 'react';
+
 import UserHabitsDataContext from '../../../contexts/App/UserHabitsDataContext';
 
 export default function TodaysProgress() {

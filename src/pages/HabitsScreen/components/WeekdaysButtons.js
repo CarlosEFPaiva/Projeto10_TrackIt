@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { selectDay } from '../HabitsScreenFunctions';
 
 export default function Weekdays({ habit, setHabit, isUnclickable }) {
