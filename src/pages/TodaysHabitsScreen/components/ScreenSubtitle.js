@@ -2,15 +2,13 @@ import styled from "styled-components";
 
 export default function ScreenSubtitle({ completionPercentage }) {
     return (
-        <Main completionPercentage = { completionPercentage }>
+        <Wrapper completionPercentage = { completionPercentage }>
             {completionPercentage ? `${completionPercentage}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
-        </Main>
+        </Wrapper>
     );
 }
 
-
-
-const Main = styled.div`
+const Wrapper = styled.div`
     width: 100%;
     margin-top: 6px;
     font-size: 18px;

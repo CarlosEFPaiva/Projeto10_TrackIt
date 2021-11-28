@@ -6,7 +6,7 @@ function adjustStateObjectData({ objectToChange, setObjectToChange, atributesToC
     setObjectToChange(newObject);
 }
 
-function TodaysHabitsCompletionPercentage (todaysHabits) {
+function todaysHabitsCompletionPercentage (todaysHabits) {
     const totalNumberOfHabits = todaysHabits.length
     const numberOfCompletedHabits = todaysHabits.filter( ({done}) => done ).length;
     return totalNumberOfHabits === 0 ? 0 : Math.round(((numberOfCompletedHabits / totalNumberOfHabits) * 100));
@@ -14,5 +14,5 @@ function TodaysHabitsCompletionPercentage (todaysHabits) {
 
 export {
     adjustStateObjectData,
-    TodaysHabitsCompletionPercentage
+    todaysHabitsCompletionPercentage
 }

@@ -4,7 +4,7 @@ import TaskCheckmarkButton from "./TaskCheckmarkButton.js";
 
 export default function HabitDueToday({habit:{ name, id, done, highestSequence, currentSequence}}) {
     return (
-        <Main>
+        <Wrapper>
             <p>{name}</p>
             <UsersStreakAndRecord
                 isHabitComplete = { done }
@@ -12,11 +12,11 @@ export default function HabitDueToday({habit:{ name, id, done, highestSequence, 
                 currentSequence = { currentSequence } 
             />
             <TaskCheckmarkButton habitId = { id } isHabitComplete = { done } /> 
-        </Main>
+        </Wrapper>
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     width: 100%;
     border-radius: 5px;
     margin-top: 20px;

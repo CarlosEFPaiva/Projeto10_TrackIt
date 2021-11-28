@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export default function UsersStreakAndRecord({ isHabitComplete, highestSequence, currentSequence }) {
-    const isRecordTied = highestSequence === currentSequence && highestSequence !== 0;
+    const isRecordTied = (highestSequence === currentSequence && highestSequence !== 0);
 
     return (
-        <Main>
+        <Wrapper>
             <p>{"Sequência atual: "}
                 <UsersStreakAndRecordValue isHabitComplete = {isHabitComplete} > 
                     { currentSequence } {currentSequence > 1 ? "dias" : "dia" }
@@ -15,11 +15,11 @@ export default function UsersStreakAndRecord({ isHabitComplete, highestSequence,
                     { highestSequence } {highestSequence > 1 ? "dias" : "dia" }
                 </UsersStreakAndRecordValue>
             </p>
-        </Main>
+        </Wrapper>
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     width: 100%;
     margin-top: 8px;
     font-size: 13px;
