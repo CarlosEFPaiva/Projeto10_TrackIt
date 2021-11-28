@@ -1,11 +1,9 @@
-function adjustStateObjectData({objectToChange,setObjectToChange, atributesToChange,atributesNewValues}) { 
-    const entriesArray = Object.entries(objectToChange);
-    atributesToChange.forEach( (atributeName, atributeIndex) => 
-        entriesArray.forEach( (SingleAtributeArray) => 
-            {if(SingleAtributeArray[0] === atributeName){SingleAtributeArray[1] = atributesNewValues[atributeIndex] }}
-        )
-    )
-    setObjectToChange(Object.fromEntries(entriesArray))
+function adjustStateObjectData({ objectToChange, setObjectToChange, atributesToChange, atributesNewValues }) {
+    const newObject = { ...objectToChange };
+    atributesToChange.forEach((atribute, index) => {
+        newObject[atribute] = atributesNewValues[index];
+    })
+    setObjectToChange(newObject);
 }
 
 function TodaysHabitsCompletionPercentage (todaysHabits) {

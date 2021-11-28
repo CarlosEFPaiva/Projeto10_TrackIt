@@ -5,42 +5,24 @@ import CreateNewHabitBox from "./components/CreateNewHabitBox.js";
 import UserHabitBox from "./components/UserHabitBox.js";
 import NewHabitButton from "./components/NewHabitButton.js";
 import { useContext, useEffect, useState } from "react";
-import { DownloadUserHabits } from "../../services/axiosServices.js";
 import UserProfileDataContext from "../../contexts/App/UserProfileDataContext.js";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserHabitsDataContext from "../../contexts/App/UserHabitsDataContext.js";
-import { adjustStateObjectData } from "../../shared/functions/Functions.js";
 import Loading from "../../shared/components/Loading.js";
 import HabitRequestContext from "../../contexts/HabitsScreen/HabitRequestContext.js";
 import IsCreateHabitBoxHidden from "../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext.js";
-import Swal from 'sweetalert2';
+import { getAndDisplayUserHabits } from "./HabitsScreenFunctions.js";
 
 export default function HabitsScreen({ setAreFixedBarsHidden }) {
     const { userProfileData } = useContext(UserProfileDataContext);
     const { userHabitsData, setUserHabitsData } = useContext(UserHabitsDataContext);
     const { isHabitRequestBeingValidated } = useContext(HabitRequestContext);
     const [isCreateNewHabitBoxHidden, setIsCreateNewHabitBoxHidden ] = useState(true);
-    const browsingHistory = useHistory()
+    const navigate = useNavigate()
 
     useEffect(() => {
         setAreFixedBarsHidden(false)
-        DownloadUserHabits(userProfileData.token)
-            .then( resp => {
-                adjustStateObjectData({
-                    objectToChange:userHabitsData,
-                    setObjectToChange:setUserHabitsData,
-                    atributesToChange: ["everyHabit"],
-                    atributesNewValues: [resp.data]
-                })
-            })
-            .catch( error => {
-                Swal.fire({
-                    title: 'Parece que houve algum erro!',
-                    text: 'Nos desculpe! :/ Tente novamente mais tarde',
-                    icon: 'error',
-                  });
-                browsingHistory.push("/")
-            })
+        getAndDisplayUserHabits({userProfileData, userHabitsData, setUserHabitsData, navigate})
     },[isHabitRequestBeingValidated]);
 
     if (!userHabitsData.everyHabit) {
@@ -55,11 +37,13 @@ export default function HabitsScreen({ setAreFixedBarsHidden }) {
             <Container backgroundColor = "#F2F2F2" horizontalPadding = "18px" topPadding = "92px" bottomPadding = "120px" >
                 <ScreenTitle text="Meus Hábitos" />
                 <NewHabitButton />
-                {isCreateNewHabitBoxHidden ? "" : <CreateNewHabitBox /> }
+                <CreateNewHabitBox isShown={isCreateNewHabitBoxHidden} />
                 {userHabitsData.everyHabit.map( (habit) => <UserHabitBox key = { habit.id } habit = {habit} /> )}
-                {userHabitsData.everyHabit.length ? "" : 
-                    <ScreenDescription text = {"Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"} />
-                }
+                <ScreenDescription
+                    text={"Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"}
+                    isShown={userHabitsData.everyHabit.length}
+                />
+
             </Container>
         </IsCreateHabitBoxHidden.Provider>
     );

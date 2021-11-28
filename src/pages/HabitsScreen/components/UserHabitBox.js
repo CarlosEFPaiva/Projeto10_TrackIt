@@ -2,7 +2,7 @@ import styled from "styled-components";
 import WeekdaysButtons from "./WeekdaysButtons.js";
 import TrashButton from "./TrashButton.js";
 
-export default function UserHabitBox({ habitId, habit }) {
+export default function UserHabitBox({ habit }) {
     return (
         <Main>
             <p>{ habit.name }</p>

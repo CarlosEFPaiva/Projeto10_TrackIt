@@ -55,9 +55,10 @@ export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
             <ScreenTitle text = {StructuredTodaysDate()} />
             <ScreenSubtitle completionPercentage = {userHabitsData.todaysCompletionPercentage} />
             { userHabitsData.todaysHabits.map( (habit) => <HabitDueToday key = {habit.id} habit = { habit } /> ) }
-            {userHabitsData.todaysHabits.length ? "" : 
-                <ScreenDescription text = {"Você não tem nenhum hábito cadastrado para hoje. Que tal mudarmos isso?"} />
-            }
+            <ScreenDescription
+                text={"Você não tem nenhum hábito cadastrado para hoje. Que tal mudarmos isso?"}
+                isShown={userHabitsData.todaysHabits.length}
+            />
         </Container>
     );
 }

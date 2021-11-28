@@ -6,13 +6,13 @@ export default function NewHabitButton() {
     const { setIsCreateNewHabitBoxHidden } = useContext(isCreateHabitBoxHiddenContext);
 
     return (
-        <Main onClick = {() => setIsCreateNewHabitBoxHidden(false)}>
+        <Wrapper onClick = {() => setIsCreateNewHabitBoxHidden(false)}>
             +
-        </Main>
+        </Wrapper>
     );
 }
 
-const Main = styled.button`
+const Wrapper = styled.button`
     width: 40px;
     height: 35px;
     border-radius: 5px;

@@ -1,31 +1,24 @@
 import styled from "styled-components";
+import { selectDay } from "../HabitsScreenFunctions";
 
 export default function Weekdays({ habit, setHabit, isUnclickable }) {
     const weekdaysList = ["D","S","T","Q","Q","S","S"]
-
-    function selectDay(clickedDay) {
-        if(!isUnclickable) {
-            const updatedhabit = {...habit}
-            if(habit.days.includes(clickedDay)){
-                updatedhabit.days = habit.days.filter( (day) => day !== clickedDay );
-            } else {
-                updatedhabit.days.push(clickedDay)
-            }
-            setHabit(updatedhabit)
-        }
-    }
     
     return (
-        <Main>
+        <Wrapper>
             {weekdaysList.map( (letter,index) => 
-                <Button key = {index} onClick = {() => selectDay(index)} isSelected = {habit.days.includes(index)} > {letter} </Button>
+                <Button
+                    key={index}
+                    onClick={() => selectDay(index, isUnclickable, habit, setHabit)}
+                    isSelected={habit.days.includes(index)}
+                > {letter} </Button>
             )}
-        </Main>
+        </Wrapper>
 
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     width: 100%;
     display: flex;
     margin-top: 8px;

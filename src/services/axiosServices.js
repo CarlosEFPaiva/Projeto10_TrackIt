@@ -19,37 +19,37 @@ function sendUserLoginData(body) {
     return axios.post(`${URL}/auth/login`, body)
 }
 
-function DownloadUserHabits(userToken) {
+function downloadUserHabits(userToken) {
     return axios.get(`${URL}/habits`, createConfig(userToken))
 }
 
-function CreateNewHabit(body, userToken) {
+function createNewHabit(body, userToken) {
     return axios.post(`${URL}/habits`,body, createConfig(userToken))
 }
 
-function SendDeleteRequest(habitId,userToken) {
+function sendDeleteRequest(habitId,userToken) {
     return axios.delete(`${URL}/habits/${habitId}`,createConfig(userToken) )
 }
 
-function DownloadHabitsDueToday(userToken) {
+function downloadHabitsDueToday(userToken) {
     return axios.get(`${URL}/habits/today`, createConfig(userToken))
 }
 
-function SendHabitSelectionState( habitId, selectionState ,userToken ) {
+function sendHabitSelectionState( habitId, selectionState ,userToken ) {
     return axios.post(`${URL}/habits/${habitId}/${selectionState}`, {} ,createConfig(userToken))
 }
 
-function DownloadUserHabitsHistory(userToken) {
+function downloadUserHabitsHistory(userToken) {
     return axios.get(`${URL}/habits/history/daily`, createConfig(userToken))
 }
 
 export {
     sendUserRegistration,
     sendUserLoginData,
-    DownloadUserHabits,
-    CreateNewHabit,
-    SendDeleteRequest,
-    DownloadHabitsDueToday,
-    SendHabitSelectionState,
-    DownloadUserHabitsHistory
+    downloadUserHabits,
+    createNewHabit,
+    sendDeleteRequest,
+    downloadHabitsDueToday,
+    sendHabitSelectionState,
+    downloadUserHabitsHistory
 }
