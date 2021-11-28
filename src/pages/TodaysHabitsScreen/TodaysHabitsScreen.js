@@ -40,7 +40,7 @@ export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
             )}
             <ScreenDescription
                 text="Você não tem nenhum hábito cadastrado para hoje. Que tal mudarmos isso?"
-                isShown={userHabitsData.todaysHabits.length}
+                isShown={!userHabitsData.todaysHabits.length}
             />
         </Container>
     );

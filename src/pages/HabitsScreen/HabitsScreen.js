@@ -39,13 +39,13 @@ export default function HabitsScreen({ setAreFixedBarsHidden }) {
             <Container backgroundColor="#F2F2F2" horizontalPadding="18px" topPadding="92px" bottomPadding="120px">
                 <ScreenTitle text="Meus Hábitos" />
                 <NewHabitButton />
-                <CreateNewHabitBox isShown={isCreateNewHabitBoxHidden} />
+                <CreateNewHabitBox isShown={!isCreateNewHabitBoxHidden} />
                 {userHabitsData.everyHabit.map(
                     (habit) => <UserHabitBox key={habit.id} habit={habit} />,
                 )}
                 <ScreenDescription
                     text="Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"
-                    isShown={userHabitsData.everyHabit.length}
+                    isShown={!userHabitsData.everyHabit.length}
                 />
 
             </Container>

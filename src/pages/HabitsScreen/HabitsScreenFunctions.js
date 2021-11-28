@@ -18,17 +18,17 @@ function getAndDisplayUserHabits({ userProfileData, userHabitsData, setUserHabit
         });
 }
 
-async function areInputsValid(newHabit, userHabitsData) {
+function areInputsValid(newHabit, userHabitsData) {
     if (!newHabit.name.length || newHabit.name.length > 40) {
-        await sendErrorAlert('Preencha o campo de nome com até 40 caracteres!');
+        sendErrorAlert('Preencha o campo de nome com até 40 caracteres!');
         return false;
     } if (!newHabit.days.length) {
-        await sendErrorAlert('Selecione pelo menos um dia da semana!');
+        sendErrorAlert('Selecione pelo menos um dia da semana!');
         return false;
     } if (userHabitsData.everyHabit.find(
         ({ name }) => name.toLowerCase() === newHabit.name.toLowerCase(),
     )) {
-        await sendErrorAlert('Parece que você já tem um hábito com esse nome!');
+        sendErrorAlert('Parece que você já tem um hábito com esse nome!');
         return false;
     }
     return true;
