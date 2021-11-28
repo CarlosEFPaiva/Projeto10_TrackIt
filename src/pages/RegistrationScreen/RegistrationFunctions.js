@@ -1,5 +1,5 @@
 import { sendUserRegistration } from "../../services/axiosServices.js";
-import Swal from 'sweetalert2';
+import { sendErrorAlert, sendSuccessAlert } from "../../utils/externalLibs/sweetAlertUtils.js";
 
 function isInputValid(inputType,inputValue) {
     const isEmailValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -12,74 +12,54 @@ function isInputValid(inputType,inputValue) {
     const isValid = inputsValidationConditions.find( ({ type }) => type === inputType ).condition
     const errorMessage = inputsValidationConditions.find( ({ type }) => type === inputType ).errortext;
     if(!isValid) {
-        Swal.fire({
-            title: `Oops!`,
-            text: errorMessage,
-            icon: 'error',
-          });
+        sendErrorAlert(errorMessage);
     }
     return isValid;
 }
 
-function registrationSuccessfullyCreated(setIsDataBeingValidated, browsingHistory ) {
-    Swal.fire({
-        title: `Beleza!`,
-        text: `Cadastro criado com sucesso!`,
-        icon: 'success',
-      });
+function registrationSuccessfullyCreated(setIsDataBeingValidated, navigate ) {
+    sendSuccessAlert('Cadastro criado com sucesso!')
     setIsDataBeingValidated(false);
-    browsingHistory.push("/");
+    navigate("/");
 }
 
 function displayRegistrationError(error, setIsDataBeingValidated ) {
     setIsDataBeingValidated(false);
-    if (error.response.status) {
-        Swal.fire({
-            title: `Oops!`,
-            text: `Já existe um usuário com este email!`,
-            icon: 'error',
-          });
-    } else {
-        Swal.fire({
-            title: `Parece que houve algum problema com o cadastro!!`,
-            text: `Por favor, tente novamente mais tarde`,
-            icon: 'error',
-          });
+    if (error.response.status === 409) {
+        return sendErrorAlert('Já existe um usuário com este email!');
     }
+    return sendErrorAlert('Parece que houve algum problema com o servidor! Tente novamente mais tarde!');
 }
 
-function validateImageUrl({ userRegistrationData, setIsDataBeingValidated, browsingHistory }) {
+function validateImageUrl({ userRegistrationData, setIsDataBeingValidated, navigate }) {
     const UrlCheck = new Image();
     UrlCheck.addEventListener('load',  function() {
         sendUserRegistration(userRegistrationData)
             .then( () => {
-                registrationSuccessfullyCreated(setIsDataBeingValidated, browsingHistory ) 
+                registrationSuccessfullyCreated(setIsDataBeingValidated, navigate ) 
             })
             .catch( (error) => {
                 displayRegistrationError(error, setIsDataBeingValidated ) 
             } )
     });
     UrlCheck.addEventListener('error', function() {
-        Swal.fire({
-            title: `Oops!`,
-            text: `Por favor, insira uma URL válida para foto`,
-            icon: 'error',
-          });
+        sendErrorAlert(`Por favor, insira uma URL válida para foto`)
         setIsDataBeingValidated(false);
     });
     UrlCheck.src = userRegistrationData.image;
 }
 
 
-function checkValidationAndSendRegistrationValues({ event, userRegistrationData, setIsDataBeingValidated, browsingHistory }){
+function checkValidationAndSendRegistrationValues({ event, userRegistrationData, setIsDataBeingValidated, navigate }){
     event.preventDefault()
     if (!isInputValid("email",userRegistrationData.email)) { return };
     if (!isInputValid("senha",userRegistrationData.password)) { return };
     if (!isInputValid("nome",userRegistrationData.name)) { return };
     setIsDataBeingValidated(true);
 
-    validateImageUrl({ userRegistrationData, setIsDataBeingValidated, browsingHistory })
+    validateImageUrl({ userRegistrationData, setIsDataBeingValidated, navigate })
 }
 
-
-export default checkValidationAndSendRegistrationValues
+export {
+    checkValidationAndSendRegistrationValues,
+};

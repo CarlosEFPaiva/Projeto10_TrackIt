@@ -1,11 +1,6 @@
-import {sendUserLoginData } from "../../services/axiosServices.js";
-import Swal from 'sweetalert2';
-
-function sendLoginToLocalStorage(userProfileData) {
-    const stringfiedUserData = JSON.stringify(userProfileData);
-    localStorage.setItem("TrackItLogin", stringfiedUserData);
-    
-}
+import { sendUserLoginData } from "../../services/axiosServices.js";
+import { sendLoginToLocalStorage } from "../../utils/localStorage.js";
+import { sendErrorAlert } from "../../utils/externalLibs/sweetAlertUtils.js";
 
 function isInputValid(inputType,inputValue) {
     const isEmailValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -17,16 +12,12 @@ function isInputValid(inputType,inputValue) {
     const isValid = inputsValidationConditions.find( ({ type }) => type === inputType ).condition;
     const errorMessage = inputsValidationConditions.find( ({ type }) => type === inputType ).errortext;
     if(!isValid) {
-        Swal.fire({
-            title: `Oops!`,
-            text: errorMessage,
-            icon: 'error',
-          });
+        sendErrorAlert(errorMessage);
     }
     return isValid;
 }
 
-function CheckAndSendLoginData({ event, userLoginData, browsingHistory, setIsDataBeingValidated, setUserProfileData }) {
+function CheckAndSendLoginData({ event, userLoginData, navigate, setIsDataBeingValidated, setUserProfileData }) {
     event.preventDefault();
     if (!isInputValid("email",userLoginData.email)) { return };
     if (!isInputValid("senha",userLoginData.password)) { return };
@@ -43,24 +34,17 @@ function CheckAndSendLoginData({ event, userLoginData, browsingHistory, setIsDat
             }
             setUserProfileData(userProfileData)
             sendLoginToLocalStorage(userProfileData)
-            browsingHistory.push("/hoje")
+            navigate("/hoje")
         })
-        .catch( error => {
+        .catch((error) => {
+            setIsDataBeingValidated(false);
             if (error.response.status === 401) {
-                Swal.fire({
-                    title: `Oops!`,
-                    text: "Parece que seu email e senha não conferem! Tente novamente",
-                    icon: 'error',
-                  });
-            } else {
-                Swal.fire({
-                    title: `Oops!`,
-                    text: "Parece que ocorreu algum erro.. :/ Tente novamente mais tarde!",
-                    icon: 'error',
-                  });
+                return sendErrorAlert("Parece que seu email e senha não conferem! Tente novamente")
             }
-            setIsDataBeingValidated(false)
+            return sendErrorAlert("Parece que ocorreu algum erro.. :/ Tente novamente mais tarde!")
         })
 }
 
-export default CheckAndSendLoginData;
+export {
+    CheckAndSendLoginData,
+};

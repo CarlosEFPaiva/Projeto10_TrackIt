@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import checkValidationAndSendRegistrationValues from "./RegistrationFunctions.js";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { checkValidationAndSendRegistrationValues } from "./RegistrationFunctions.js";
 import Container from "../../shared/styles/Container.js";
 import ForwardButton from "../../shared/components/BlueForwardButton.js";
 import MainLogo from "../../shared/components/MainLogo.js";
 import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderlinedMessage.js";
 import StandardInput from "../../shared/components/StandardInput.js";
 import { adjustStateObjectData } from "../../shared/functions/Functions.js";
+import { IsUserLoggedAndSendToHomepage } from "../../utils/localStorage.js";
+import UserProfileDataContext from "../../contexts/App/UserProfileDataContext.js";
 
 export default function RegistrationScreen({ setAreFixedBarsHidden }) {
     setAreFixedBarsHidden(true)
@@ -18,13 +20,16 @@ export default function RegistrationScreen({ setAreFixedBarsHidden }) {
         {placeholder: "nome", type:"text", value:userRegistrationData.name, atribute: "name" },
         {placeholder: "foto", type:"text", value:userRegistrationData.image, atribute: "image" },
     ];
-    const browsingHistory = useHistory()
+    const navigate = useNavigate()
+    const { setUserProfileData } = useContext(UserProfileDataContext);
+
+    IsUserLoggedAndSendToHomepage(setUserProfileData, navigate)
 
     return (
         <Container horizontalPadding = {"36px"} >
             <MainLogo />
             <form onSubmit = { (event) => 
-                checkValidationAndSendRegistrationValues({ event, userRegistrationData, setIsDataBeingValidated, browsingHistory }) }
+                checkValidationAndSendRegistrationValues({ event, userRegistrationData, setIsDataBeingValidated, navigate }) }
             >
                 { inputsData.map( ({placeholder, type, value, atribute}, index) => 
                     <StandardInput 
