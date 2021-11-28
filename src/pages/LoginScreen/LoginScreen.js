@@ -5,9 +5,9 @@ import Container from "../../shared/styles/Container.js";
 import ForwardButton from "../../shared/components/BlueForwardButton.js";
 import MainLogo from "../../shared/components/MainLogo.js";
 import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderlinedMessage.js";
-import StandardInput from "../../shared/components/StandardInput.js";
+import StandardInput from "../../shared/styles/StandardInput.js";
 import UserProfileDataContext from "../../contexts/App/UserProfileDataContext.js";
-import { adjustStateObjectData } from "../../shared/functions/Functions";
+import { adjustStateObjectData } from "../../utils/stateObject";
 import { IsUserLoggedAndSendToHomepage } from "../../utils/localStorage";
 
 export default function LoginScreen({ setAreFixedBarsHidden }) {
@@ -50,7 +50,7 @@ export default function LoginScreen({ setAreFixedBarsHidden }) {
                     isDataBeingValidated = {isDataBeingValidated}
                 />
             </form>
-            <UnderButtonMessageLink linkTo = "/cadastro" text = "Não tem uma conta? Cadastre-se!"/>
+            <UnderButtonMessageLink path = "/cadastro" text = "Não tem uma conta? Cadastre-se!"/>
         </Container>
     );
 }

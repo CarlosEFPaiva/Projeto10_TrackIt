@@ -1,5 +1,5 @@
 import { downloadUserHabits, createNewHabit, sendDeleteRequest } from "../../services/axiosServices"
-import { adjustStateObjectData } from "../../shared/functions/Functions"
+import { adjustStateObjectData } from "../../utils/stateObject";
 import { sendConfirmAlert, sendErrorAlert, sendSuccessAlert } from "../../utils/externalLibs/sweetAlertUtils"
 
 function getAndDisplayUserHabits({userProfileData, userHabitsData, setUserHabitsData, navigate}) {

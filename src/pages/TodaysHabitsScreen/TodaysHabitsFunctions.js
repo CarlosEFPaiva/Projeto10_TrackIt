@@ -1,5 +1,5 @@
 import { downloadHabitsDueToday, sendHabitSelectionState } from '../../services/axiosServices';
-import { adjustStateObjectData, todaysHabitsCompletionPercentage } from '../../shared/functions/Functions';
+import { adjustStateObjectData } from '../../utils/stateObject';
 import { sendErrorAlert } from '../../utils/externalLibs/sweetAlertUtils';
 
 function processHabitClick(selectionState, habitId, userProfileData, setIsHabitRequestBeingValidated, setIsThisHabitBeingUpdated) {
@@ -29,6 +29,12 @@ function selectOrDeselectHabit(
     } else {
         processHabitClick("check", habitId, userProfileData, setIsHabitRequestBeingValidated, setIsThisHabitBeingUpdated);
     }
+}
+
+function todaysHabitsCompletionPercentage (todaysHabits) {
+    const totalNumberOfHabits = todaysHabits.length
+    const numberOfCompletedHabits = todaysHabits.filter( ({done}) => done ).length;
+    return totalNumberOfHabits === 0 ? 0 : Math.round(((numberOfCompletedHabits / totalNumberOfHabits) * 100));
 }
 
 function getAndDisplayHabitsDueToday(userProfileData, userHabitsData, setUserHabitsData, navigate) {

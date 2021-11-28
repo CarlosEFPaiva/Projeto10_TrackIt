@@ -6,7 +6,6 @@ export default function ScreenTitle ({text}) {
             {text}
         </Main>
     );
-
 }
 
 const Main = styled.div`

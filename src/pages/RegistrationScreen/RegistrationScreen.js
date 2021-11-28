@@ -5,8 +5,8 @@ import Container from "../../shared/styles/Container.js";
 import ForwardButton from "../../shared/components/BlueForwardButton.js";
 import MainLogo from "../../shared/components/MainLogo.js";
 import UnderButtonMessageLink from "../../shared/components/InitialScreensUnderlinedMessage.js";
-import StandardInput from "../../shared/components/StandardInput.js";
-import { adjustStateObjectData } from "../../shared/functions/Functions.js";
+import StandardInput from "../../shared/styles/StandardInput.js";
+import { adjustStateObjectData } from "../../utils/stateObject.js";
 import { IsUserLoggedAndSendToHomepage } from "../../utils/localStorage.js";
 import UserProfileDataContext from "../../contexts/App/UserProfileDataContext.js";
 
@@ -54,7 +54,7 @@ export default function RegistrationScreen({ setAreFixedBarsHidden }) {
                     type = "submit"
                 />
             </form>
-            <UnderButtonMessageLink linkTo = "/" text = "Já tem uma conta? Faça login!"/>
+            <UnderButtonMessageLink path = "/" text = "Já tem uma conta? Faça login!"/>
         </Container>
     );
 }

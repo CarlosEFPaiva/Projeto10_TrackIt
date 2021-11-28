@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function UnderButtonMessage({ text, linkTo }) {
+export default function UnderButtonMessage({ text, path }) {
+    const navigate = useNavigate()
     return (
-        <Link to ={linkTo}>
-            <Main>
-                {text}
-            </Main>
-        </Link>
+        <Main onClick={() => navigate(path)}>
+            {text}
+        </Main>
     );
 }
 

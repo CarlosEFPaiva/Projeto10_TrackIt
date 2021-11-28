@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
-import StandardInput from "../../../shared/components/StandardInput";
+import StandardInput from "../../../shared/styles/StandardInput";
 import OptionButtons from "./OptionButtons";
 import WeekdaysButtons from "./WeekdaysButtons.js";
-import { adjustStateObjectData } from "../../../shared/functions/Functions";
+import { adjustStateObjectData } from "../../../utils/stateObject";
 import { useContext } from "react/cjs/react.development";
 import HabitRequestContext from "../../../contexts/HabitsScreen/HabitRequestContext";
 
