@@ -1,35 +1,38 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { selectDay } from '../HabitsScreenFunctions';
 
 export default function Weekdays({ habit, setHabit, isUnclickable }) {
-    const weekdaysList = ["D","S","T","Q","Q","S","S"]
+    const weekdaysList = [
+        { letter: 'D', key: 'Weekday 1' },
+        { letter: 'S', key: 'Weekday 2' },
+        { letter: 'T', key: 'Weekday 3' },
+        { letter: 'Q', key: 'Weekday 4' },
+        { letter: 'Q', key: 'Weekday 5' },
+        { letter: 'S', key: 'Weekday 6' },
+        { letter: 'S', key: 'Weekday 7' },
+    ];
 
-    function selectDay(clickedDay) {
-        if(!isUnclickable) {
-            const updatedhabit = {...habit}
-            if(habit.days.includes(clickedDay)){
-                updatedhabit.days = habit.days.filter( (day) => day !== clickedDay );
-            } else {
-                updatedhabit.days.push(clickedDay)
-            }
-            setHabit(updatedhabit)
-        }
-    }
-    
     return (
-        <Main>
-            {weekdaysList.map( (letter,index) => 
-                <Button key = {index} onClick = {() => selectDay(index)} isSelected = {habit.days.includes(index)} > {letter} </Button>
-            )}
-        </Main>
+        <Wrapper>
+            {weekdaysList.map(({ letter, key }, index) => (
+                <Button
+                    key={key}
+                    onClick={() => selectDay(index, isUnclickable, habit, setHabit)}
+                    isSelected={habit.days.includes(index)}
+                >
+                    {letter}
+                </Button>
+            ))}
+        </Wrapper>
 
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     width: 100%;
     display: flex;
     margin-top: 8px;
-`
+`;
 
 const Button = styled.button`
     width: 30px;
@@ -37,6 +40,6 @@ const Button = styled.button`
     margin-right: 4px;
     border: 1px solid #D4D4D4;
     border-radius: 5px;
-    background-color: ${ ({ isSelected }) => isSelected ? "#CFCFCF" : "#FFFFFF" };
-    color: ${ ({ isSelected }) => isSelected ? "#FFFFFF" : "#CFCFCF" } ;
-`
+    background-color: ${({ isSelected }) => (isSelected ? '#CFCFCF' : '#FFFFFF')};
+    color: ${({ isSelected }) => (isSelected ? '#FFFFFF' : '#CFCFCF')} ;
+`;

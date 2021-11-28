@@ -1,17 +1,19 @@
-import styled from "styled-components";
-import { ImCross } from "react-icons/im";
-import { MdDone } from "react-icons/md";
+import styled from 'styled-components';
+import { ImCross } from 'react-icons/im';
+import { MdDone } from 'react-icons/md';
 
-export default function HabitLine({habit, isDone}) {
+export default function HabitLine({ habit, isDone }) {
     return (
-        <Main>
+        <Wrapper>
             {habit}
-            <Box isDone = {isDone} > { isDone ? <MdDone /> : <ImCross /> } </Box>
-        </Main>
+            <Box isDone={isDone}>
+                {isDone ? <MdDone /> : <ImCross />}
+            </Box>
+        </Wrapper>
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     max-width: 100%;
     word-wrap: break-word;
     font-size: 18px;
@@ -20,7 +22,7 @@ const Main = styled.div`
     margin: 6px 0px;
     line-height: 20px;
     text-align: center;
-`
+`;
 
 const Box = styled.div`
     width: 20px;
@@ -30,9 +32,8 @@ const Box = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${ ({isDone}) => isDone ? "green" : "red" };
-    font-size: ${ ({isDone}) => isDone ? "16px" : "12px" };
+    background-color: ${({ isDone }) => (isDone ? 'green' : 'red')};
+    font-size: ${({ isDone }) => (isDone ? '16px' : '12px')};
     margin-left: 10px;
     color: #fff;
-
-`
+`;

@@ -1,23 +1,30 @@
-import styled from "styled-components";
-import { AiOutlineRollback } from "react-icons/ai";
-import HabitLine from "./HabitLine";
+import styled from 'styled-components';
+import { AiOutlineRollback } from 'react-icons/ai';
+import HabitLine from './HabitLine';
 
 export default function PrintedHabits({ givenDate, givenDateHabitsList, setClickedDate }) {
+    const keys = givenDateHabitsList.map((habit, index) => `Printed Habit ${index + 1}`);
     return (
-        <Main>
-            <Title> Hábitos do dia {givenDate} </Title>
-            <Button onClick = { () => setClickedDate(false) } > <AiOutlineRollback /> </Button>
-            {givenDateHabitsList.map( ({ name, done },index) => 
-            <HabitLine
-                key = {index}
-                habit = {name}
-                isDone = {done} 
-            />)}
-        </Main>
+        <Wrapper>
+            <Title>
+                Hábitos do dia
+                {givenDate}
+            </Title>
+            <Button onClick={() => setClickedDate(false)}>
+                <AiOutlineRollback />
+            </Button>
+            {givenDateHabitsList.map(({ name, done }, index) => (
+                <HabitLine
+                    key={keys[index]}
+                    habit={name}
+                    isDone={done}
+                />
+            ))}
+        </Wrapper>
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     width: 100%;
     height: 300px;
     padding: 20px 5px;
@@ -28,7 +35,7 @@ const Main = styled.div`
     flex-direction: column;
     align-items: center;
     position: relative;
-`
+`;
 
 const Title = styled.p`
     width: 100%;
@@ -36,7 +43,7 @@ const Title = styled.p`
     display: inline-block;
     margin: 3px 0px 20px;
     padding-left: 50px;
-`
+`;
 
 const Button = styled.button`
     width: 30px;
@@ -48,4 +55,4 @@ const Button = styled.button`
     position: absolute;
     left: 15px;
     top: 15px;
-`
+`;

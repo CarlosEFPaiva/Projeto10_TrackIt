@@ -1,22 +1,24 @@
-import styled from "styled-components";
-import UsersStreakAndRecord from "./UsersStreakAndRecord.js";
-import TaskCheckmarkButton from "./TaskCheckmarkButton.js";
+import styled from 'styled-components';
+import UsersStreakAndRecord from './UsersStreakAndRecord.js';
+import TaskCheckmarkButton from './TaskCheckmarkButton.js';
 
-export default function HabitDueToday({habit:{ name, id, done, highestSequence, currentSequence}}) {
+export default function HabitDueToday(
+    { habit: { name, id, done, highestSequence, currentSequence } },
+) {
     return (
-        <Main>
+        <Wrapper>
             <p>{name}</p>
             <UsersStreakAndRecord
-                isHabitComplete = { done }
-                highestSequence = { highestSequence }
-                currentSequence = { currentSequence } 
+                isHabitComplete={done}
+                highestSequence={highestSequence}
+                currentSequence={currentSequence}
             />
-            <TaskCheckmarkButton habitId = { id } isHabitComplete = { done } /> 
-        </Main>
+            <TaskCheckmarkButton habitId={id} isHabitComplete={done} />
+        </Wrapper>
     );
 }
 
-const Main = styled.div`
+const Wrapper = styled.div`
     width: 100%;
     border-radius: 5px;
     margin-top: 20px;
@@ -31,4 +33,4 @@ const Main = styled.div`
         width: calc(100% - 75px);
         word-wrap: break-word;
     }
-`
+`;
