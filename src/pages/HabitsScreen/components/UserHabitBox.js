@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import WeekdaysButtons from "./WeekdaysButtons.js";
-import TrashButton from "./TrashButton.js";
+import styled from 'styled-components';
+import WeekdaysButtons from './WeekdaysButtons.js';
+import TrashButton from './TrashButton.js';
 
 export default function UserHabitBox({ habit }) {
     return (
         <Main>
             <p>{ habit.name }</p>
-            <WeekdaysButtons habit = {habit} isUnclickable = {true} />
-            <TrashButton habitId = {habit.id} />
+            <WeekdaysButtons habit={habit} isUnclickable />
+            <TrashButton habitId={habit.id} />
         </Main>
     );
 }
@@ -26,4 +26,4 @@ const Main = styled.div`
         max-width: 80%;
         word-wrap: break-word;
     }
-`
+`;

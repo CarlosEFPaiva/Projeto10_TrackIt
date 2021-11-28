@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import trackItLogo from "../../assets/img/Logo.png"
+import styled from 'styled-components';
+import trackItLogo from '../../assets/img/Logo.png';
 
 export default function MainLogo() {
     return (
-        <ImgLogo src = { trackItLogo } />
+        <ImgLogo src={trackItLogo} />
     );
 }
 
@@ -12,4 +12,4 @@ const ImgLogo = styled.img`
     height: 180px;
     margin-top: 68px;
     margin-bottom: 32px;
-`
+`;

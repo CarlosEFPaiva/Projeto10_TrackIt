@@ -1,17 +1,20 @@
-import styled from "styled-components";
-import ForwardButton from "../../../shared/components/BlueForwardButton";
-import { useContext } from "react";
-import UserProfileDataContext from "../../../contexts/App/UserProfileDataContext";
-import UserHabitsDataContext from "../../../contexts/App/UserHabitsDataContext";
-import isCreateHabitBoxHiddenContext from "../../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext";
-import HabitRequestContext from "../../../contexts/HabitsScreen/HabitRequestContext";
-import { checkValuesAndSendNewHabitToServer } from "../HabitsScreenFunctions";
+import styled from 'styled-components';
+import { useContext } from 'react';
+import ForwardButton from '../../../shared/components/BlueForwardButton';
+import UserProfileDataContext from '../../../contexts/App/UserProfileDataContext';
+import UserHabitsDataContext from '../../../contexts/App/UserHabitsDataContext';
+import isCreateHabitBoxHiddenContext from '../../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext';
+import HabitRequestContext from '../../../contexts/HabitsScreen/HabitRequestContext';
+import { checkValuesAndSendNewHabitToServer } from '../HabitsScreenFunctions';
 
 export default function OptionButtons({ newHabit, setNewHabit }) {
     const { userProfileData } = useContext(UserProfileDataContext);
     const { userHabitsData } = useContext(UserHabitsDataContext);
-    const { isHabitRequestBeingValidated, setIsHabitRequestBeingValidated } = useContext(HabitRequestContext);
-    const { setIsCreateNewHabitBoxHidden } = useContext(isCreateHabitBoxHiddenContext)
+    const {
+        isHabitRequestBeingValidated,
+        setIsHabitRequestBeingValidated,
+    } = useContext(HabitRequestContext);
+    const { setIsCreateNewHabitBoxHidden } = useContext(isCreateHabitBoxHiddenContext);
 
     function forwardButtonOnClick() {
         checkValuesAndSendNewHabitToServer(
@@ -20,21 +23,23 @@ export default function OptionButtons({ newHabit, setNewHabit }) {
             setIsHabitRequestBeingValidated,
             userProfileData,
             setIsCreateNewHabitBoxHidden,
-            setNewHabit
+            setNewHabit,
         );
     }
 
     return (
         <Wrapper>
-            <button onClick={() => setIsCreateNewHabitBoxHidden(true)}>
+            <CancelButton
+                onClick={() => setIsCreateNewHabitBoxHidden(true)}
+            >
                 Cancelar
-            </button>
-            <ForwardButton 
-                    onClick = {forwardButtonOnClick}
-                    text = "Salvar"
-                    isDataBeingValidated = {isHabitRequestBeingValidated}
-                    smallerVersion = {true}
-                />
+            </CancelButton>
+            <ForwardButton
+                onClick={forwardButtonOnClick}
+                text="Salvar"
+                isDataBeingValidated={isHabitRequestBeingValidated}
+                smallerVersion
+            />
         </Wrapper>
     );
 }
@@ -46,9 +51,9 @@ const Wrapper = styled.div`
     align-items: center;
     margin-top: 30px;
     font-size: 16px;
+`;
 
-    button:nth-child(1) {
-        margin-right: 24px;
-        color: #52B6FF;
-    }
-`
+const CancelButton = styled.button`
+    margin-right: 24px;
+    color: #52B6FF;
+`;

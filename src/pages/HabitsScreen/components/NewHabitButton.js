@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import styled from "styled-components";
-import isCreateHabitBoxHiddenContext from "../../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext";
+import { useContext } from 'react';
+import styled from 'styled-components';
+import isCreateHabitBoxHiddenContext from '../../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext';
 
 export default function NewHabitButton() {
     const { setIsCreateNewHabitBoxHidden } = useContext(isCreateHabitBoxHiddenContext);
 
     return (
-        <Wrapper onClick = {() => setIsCreateNewHabitBoxHidden(false)}>
+        <Wrapper onClick={() => setIsCreateNewHabitBoxHidden(false)}>
             +
         </Wrapper>
     );
@@ -26,4 +26,4 @@ const Wrapper = styled.button`
     top: 86px;
     right: 18px;
     z-index: 1;
-`
+`;

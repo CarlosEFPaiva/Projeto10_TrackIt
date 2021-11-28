@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export default function ScreenTitle ({text}) {
+export default function ScreenTitle({ text }) {
     return (
         <Main>
             {text}
@@ -15,4 +15,4 @@ const Main = styled.div`
     align-items: center;
     font-size: 24px;
     color: #126BA5;
-`
+`;
