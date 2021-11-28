@@ -3,8 +3,8 @@ import styled from "styled-components"
 const FixedBar = styled.header`
     width: 100%;
     height: 70px;
-    padding: 0px ${ ({position}) => position === "top" ? "18px" : "32px" };
-    display: flex;
+    padding: 0px ${({ position }) => position === "top" ? "18px" : "32px"};
+    display: ${({isHidden}) => (isHidden ? 'none' : 'flex')};
     justify-content: space-between;
     align-items: center;
     position: fixed;

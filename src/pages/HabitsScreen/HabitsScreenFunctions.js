@@ -56,22 +56,21 @@ function checkValuesAndSendNewHabitToServer(
     }
 }
 
-async function deleteHabit(isHabitRequestBeingValidated, setIsHabitRequestBeingValidated, habitId, userProfileData) {
-    if (!isHabitRequestBeingValidated) {
-        const alert = await sendConfirmAlert('Deseja mesmo deletar esse hábito?', "Pode deletar!");
-        if (alert.isConfirmed) {
-            setIsHabitRequestBeingValidated(true)
-            sendDeleteRequest(habitId, userProfileData.token)
-            .then(() => {
-                sendSuccessAlert('Hábito deletado com sucesso!')
-                setIsHabitRequestBeingValidated(false)
-            })
-            .catch(() => {
-                sendErrorAlert('Parece que houve um problema com o servidor! Tente novamente mais tarde')
-                setIsHabitRequestBeingValidated(false)
-            })
-        } 
-    }
+async function deleteHabit(setIsHabitRequestBeingValidated, habitId, userProfileData) {
+    const alert = await sendConfirmAlert('Deseja mesmo deletar esse hábito?', "Pode deletar!");
+    if (alert.isConfirmed) {
+        setIsHabitRequestBeingValidated(true)
+        sendDeleteRequest(habitId, userProfileData.token)
+        .then(() => {
+            sendSuccessAlert('Hábito deletado com sucesso!')
+            setIsHabitRequestBeingValidated(false)
+        })
+        .catch(() => {
+            sendErrorAlert('Parece que houve um problema com o servidor! Tente novamente mais tarde')
+            setIsHabitRequestBeingValidated(false)
+        })
+    } 
+    
 }
 
 function selectDay(clickedDay, isUnclickable, habit, setHabit) {

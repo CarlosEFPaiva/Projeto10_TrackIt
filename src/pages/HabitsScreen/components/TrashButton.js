@@ -11,8 +11,9 @@ export default function TrashButton({habitId}) {
 
     return (
         <Button
+            disabled={isHabitRequestBeingValidated}
             onClick={
-                () => deleteHabit(isHabitRequestBeingValidated, setIsHabitRequestBeingValidated, habitId, userProfileData)
+                () => deleteHabit(setIsHabitRequestBeingValidated, habitId, userProfileData)
             }
         >
             <BsTrash />

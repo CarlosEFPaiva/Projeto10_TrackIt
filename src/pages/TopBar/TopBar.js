@@ -1,34 +1,18 @@
 import { useContext } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import UserProfileDataContext from "../../contexts/App/UserProfileDataContext.js";
 import FixedBar from "../../shared/styles/FixedBar.js";
-import Swal from 'sweetalert2';
+import { logOut } from "./TopBarFunctions.js";
 
 export default function TopBar({isHidden}) {
     const { userProfileData } = useContext(UserProfileDataContext)
-    const browsingHistory = useHistory();
-
-    function logOut() {
-        Swal.fire({
-            title: 'Tem certeza?',
-            text: 'Deseja realmente sair?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sim!',
-            cancelButtonText: 'Cancelar'
-          })
-          .then( result => { if(result.isConfirmed) {
-            localStorage.removeItem("TrackItLogin");
-            browsingHistory.push("/");
-          }})
-    }
+    const navigate = useNavigate();
 
     return (
-        isHidden ? "" :
-        <FixedBar position = "top" >
+        <FixedBar isHidden position = "top" >
             <TrackItTextLogo> TrackIt </TrackItTextLogo>
-            <LogOutButton onClick = { logOut } > Sair </LogOutButton>
+            <LogOutButton onClick = { () => logOut(navigate) } > Sair </LogOutButton>
             <UserProfilePicture src = {userProfileData.image}/>
         </FixedBar>
     );
