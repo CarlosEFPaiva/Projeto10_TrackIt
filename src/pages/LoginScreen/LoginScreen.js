@@ -1,14 +1,17 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckAndSendLoginData } from './LoginFunctions';
+
+import UserProfileDataContext from '../../contexts/App/UserProfileDataContext.js';
+
 import Container from '../../shared/styles/Container.js';
 import ForwardButton from '../../shared/components/BlueForwardButton.js';
 import MainLogo from '../../shared/components/MainLogo.js';
 import UnderButtonMessageLink from '../../shared/components/InitialScreensUnderlinedMessage.js';
 import StandardInput from '../../shared/styles/StandardInput.js';
-import UserProfileDataContext from '../../contexts/App/UserProfileDataContext.js';
+
 import { adjustStateObjectData } from '../../utils/stateObject';
 import { IsUserLoggedAndSendToHomepage } from '../../utils/localStorage';
+import { CheckAndSendLoginData } from './LoginFunctions';
 
 export default function LoginScreen({ setAreFixedBarsHidden }) {
     setAreFixedBarsHidden(true);

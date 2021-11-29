@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
+
 import isCreateHabitBoxHiddenContext from '../../../contexts/HabitsScreen/IsCreateHabitBoxHiddenContext';
 
 export default function NewHabitButton() {

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useContext } from 'react/cjs/react.development';
+
+import HabitRequestContext from '../../../contexts/HabitsScreen/HabitRequestContext';
+
 import StandardInput from '../../../shared/styles/StandardInput';
 import OptionButtons from './OptionButtons';
 import WeekdaysButtons from './WeekdaysButtons.js';
+
 import { adjustStateObjectData } from '../../../utils/stateObject';
-import HabitRequestContext from '../../../contexts/HabitsScreen/HabitRequestContext';
 
 export default function CreateNewHabitBox({ isShown }) {
     const [newHabit, setNewHabit] = useState({ name: '', days: [] });

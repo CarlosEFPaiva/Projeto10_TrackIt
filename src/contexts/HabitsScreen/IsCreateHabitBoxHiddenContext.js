@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const isCreateHabitBoxHiddenContext = createContext();
+const IsCreateHabitBoxHiddenContext = createContext();
 
-export default isCreateHabitBoxHiddenContext;
+export default IsCreateHabitBoxHiddenContext;

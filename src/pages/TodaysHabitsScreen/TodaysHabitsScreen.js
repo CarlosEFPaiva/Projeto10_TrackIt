@@ -1,16 +1,19 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import UserProfileDataContext from '../../contexts/App/UserProfileDataContext';
+import UserHabitsDataContext from '../../contexts/App/UserHabitsDataContext';
+import HabitRequestContext from '../../contexts/HabitsScreen/HabitRequestContext';
+
 import Container from '../../shared/styles/Container';
 import HabitDueToday from './components/HabitDueToday';
 import ScreenTitle from '../../shared/components/ScreenTitle';
 import ScreenSubtitle from './components/ScreenSubtitle';
 import ScreenDescription from '../../shared/components/ScreenDescription';
-import { structuredTodaysDate } from '../../utils/externalLibs/dayJs';
-import UserProfileDataContext from '../../contexts/App/UserProfileDataContext';
-import UserHabitsDataContext from '../../contexts/App/UserHabitsDataContext';
 import Loading from '../../shared/components/Loading';
+
 import { getAndDisplayHabitsDueToday } from './TodaysHabitsFunctions';
-import HabitRequestContext from '../../contexts/HabitsScreen/HabitRequestContext';
+import { structuredTodaysDate } from '../../utils/externalLibs/dayJs';
 
 export default function TodaysHabitsScreen({ setAreFixedBarsHidden }) {
     const { userProfileData } = useContext(UserProfileDataContext);

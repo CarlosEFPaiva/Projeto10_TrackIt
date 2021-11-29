@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import TodaysProgress from './components/TodaysProgress.js';
 
 export default function BottomBar({ isHidden }) {

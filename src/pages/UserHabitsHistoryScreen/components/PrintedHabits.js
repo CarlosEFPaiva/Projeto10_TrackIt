@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { AiOutlineRollback } from 'react-icons/ai';
+
 import HabitLine from './HabitLine';
 
 export default function PrintedHabits({ givenDate, givenDateHabitsList, setClickedDate }) {

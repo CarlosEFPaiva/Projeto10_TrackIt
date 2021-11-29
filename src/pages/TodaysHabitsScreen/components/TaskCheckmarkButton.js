@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import { IoMdCheckmark } from 'react-icons/io';
 import { useContext, useState } from 'react';
+
 import UserProfileDataContext from '../../../contexts/App/UserProfileDataContext';
 import HabitRequestContext from '../../../contexts/HabitsScreen/HabitRequestContext';
+
 import greenLoadingGif from '../../../assets/img/GreenLoading.gif';
 import lightGreenLoadingGif from '../../../assets/img/LightGreenLoading.gif';
+
 import { selectOrDeselectHabit } from '../TodaysHabitsFunctions';
 
 export default function TaskCheckmarkButton({ habitId, isHabitComplete }) {
