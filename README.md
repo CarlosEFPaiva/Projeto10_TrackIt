@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# TrackIt - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About this Project
 
-## Available Scripts
+This project was developed as part of the Driven Web Full-Stack Bootcamp, a 6-month bootcamp where I started my journey as a web developer.
 
-In the project directory, you can run:
+It serves as the front-end for TrackIt -> the back-end of this project can be found [here](https://github.com/CarlosEFPaiva/TrackIt_Backend). The backend is still under development, though.
 
-### `npm start`
+TrackIt is an app for helping users to keep track of their habits, both to encourage creating new habits and to help keeping old ones. Its layout was developed exclusive for mobile applications.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The code for this project was developed in English, but it's interface is currently in Portuguese.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Functionalities
 
-### `npm test`
+- Create your own login, using the registration screen. It will save your information in a database and allow you to login wherever you want.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Sign in using your email and password, and a homescreen will show your profile picture and your habits for the current day, allowing you to check which habits you have already done.
 
-### `npm run build`
+- The bottom bar allows you to navigate to the Habits screen, where you can check every habit you have created, the weekdays on which you should complete the task related to your habit. You can also create a new habit, setting its description and weekdays.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- The history Screen shows a calendar with clickable dates, green ones being the days when the user has completed every task for the day, and red being the ones where at least one task was left behind. It helps keeping track with habits on a longer term!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- At any desired moment, user might log out of the app using the button on the top bar.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To run this project in the development mode, you'll need to have a basic environment to run a React App.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Vercel Deploy: This project can be fully experienced by its Vercel deploy, clicking [here](https://projeto10-track-it-sage.vercel.app/).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Run it locally: As long as the backend is under development, the app uses an API given by the Driven group. For that reason, the app can be used without the need of combining it to another backend repository. This will change in a nearby future, though.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Running
 
-## Learn More
+The following scripts are set for better using of the app:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- start -> Will start the app and communicate with the API given by the Driven group.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- build -> command to make a build version of the project.
 
-### Code Splitting
+- eject -> command to eject a running version of the project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Built With
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [React](https://reactjs.org/) - Web Framework for javascript
+- [ESlint](https://eslint.org/) - Linter
+- [Axios](https://www.npmjs.com/package/axios) - Promise bases HTTP client
+- [Styled Components](https://www.npmjs.com/package/styled-components) - Creates easily manipulated components for React
+- [React Icons](https://www.npmjs.com/package/react-icons) - Access to a variety of icons to be easily implemented
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom) - Package for setting routes and the communication between them.
+- [Sweet Alert 2](https://www.npmjs.com/package/sweetalert2) - Easily creates customizable responses, alerts and pop-ups for browser.
+- [dayJs](https://www.npmjs.com/package/dayjs) - Package for manipulating dates.
+- [react-calendar](https://www.npmjs.com/package/react-calendar) - Package for customizable calendar
+- [react-circular-progressbar](https://www.npmjs.com/package/react-circular-progressbar) - Circular progress indicator component.
